@@ -1,0 +1,14 @@
+{
+  "name": "react-coding-challenge",
+  "version": "1.0.0",
+  "description": "A package containing a simple dummy book API, which should be used in the challenge",
+  "scripts": {
+    "start": "json-server --port 3010 --watch api.json"
+  },
+  "keywords": ["react challenge", "tryouts", "react developer", "hiring"],
+  "author": "Adapt A/S",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "0.10.1"
+  }
+}
