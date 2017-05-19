@@ -1,13 +1,12 @@
-import React, { PropTypes } from 'react';
-import Book from './Book';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 
-class EditableBook extends React.Component {
+class EditableBook extends Component {
     static propTypes = {
         onBookAdd: PropTypes.func,
         isActive: PropTypes.bool.isRequired,
         onComplete: PropTypes.func.isRequired,
         onCancel: PropTypes.func,
-
         title: PropTypes.string,
         author: PropTypes.string
     }
@@ -15,12 +14,11 @@ class EditableBook extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: props.title || '',
-            author: props.author || ''
+            ...props
         }
     }
 
-    componentWillReceiveProps = ({ isActive }) => {
+    componentWillReceiveProps = ({isActive}) => {
         if (isActive) {
             this.titleInput.focus();
         }
@@ -28,36 +26,49 @@ class EditableBook extends React.Component {
 
     onKeyPress = (e, fieldName) => {
         if (e.keyCode === 13) {
-            this.props.onComplete(this.state.title, this.state.author);
-            this.setState({title: '', author: ''});
+            e.preventDefault();
+            this.props.onComplete(this.state.title);
+            this.setState({title: ''});
+
         }
         else if (e.keyCode === 27) {
             this.props.onCancel();
-            this.setState({title: '', author: ''});
+            this.setState({title: ''});
         }
     }
 
     onChange = (e, fieldName) => {
         this.setState({
-            [fieldName]:e.target.value
+            [fieldName]: e.target.value
         });
     }
 
     render = () => (
-        <form>
-            <Book
-                title={
-                    <input
-                        type="text"
-                        placeholder="Title"
-                        innerRef={input => this.titleInput = input}
-                        value={this.state.title}
-                        onChange={e => this.onChange(e, 'title')}
-                        onKeyDown={e => this.onKeyPress(e, 'title')}
-                    />
-                }
-                onDeleteButtonClick={this.props.onCancel}
+        <form key={this.key}>
+            <label>Title</label> <input
+                type="text"
+                name="titleInput"
+                ref={input => this.titleInput = input}
+                value={this.state.title}
+                onChange={e => this.onChange(e, 'title')}
+                onKeyDown={e => this.onKeyPress(e, 'title')}
             />
+            <br/>
+            <label>Author</label><input defaultValue={this.state.authors.map((item) => item.name)} />
+            <br/>
+            <label>Bookshelves</label><input defaultValue={this.state.bookshelves} />
+            <br/>
+            <label>Subjects</label>
+            <select
+                multiple="multiple"
+                defaultValue={this.state.subjects}>
+                {
+                    this.state.subjects.map(option =>
+                        <option value={option} key={option}>
+                            {option}
+                        </option>)
+                }
+            </select>
         </form>
     );
 }

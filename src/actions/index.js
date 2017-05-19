@@ -1,8 +1,9 @@
 export const REQUEST_BOOKS = 'REQUEST_BOOKS'
 export const RECEIVE_BOOKS = 'RECEIVE_BOOKS'
+export const REQUEST_SUBJECTS = 'REQUEST_SUBJECTS'
+export const RECEIVE_SUBJECTS = 'RECEIVE_SUBJECTS'
 export const SELECT_SUBJECT = 'SELECT_SUBJECT'
 export const INVALIDATE_SUBJECT = 'INVALIDATE_SUBJECT'
-export const SWITCH_EDIT_STATUS = 'SWITCH_EDIT_STATUS';
 export const EDIT_BOOK = "EDIT_BOOK";
 
 export const selectSubject = subject => ({
@@ -20,36 +21,44 @@ export const requestBooks = subject => ({
   subject
 })
 
+export const requestSubjects = () => ({type: REQUEST_SUBJECTS})
+
 export const receiveBooks = (subject, json) => {
   return {
         type: RECEIVE_BOOKS,
         subject,
-        books: subject?json.filter( (book) => (book.subjects.indexOf(subject) > -1)):json,
+        books: json,
         receivedAt: Date.now()
     }
 }
+export const receiveSubjects = (json) => {
+  return {
+        type: RECEIVE_SUBJECTS,
+        subjects: json,
+    }
+}
 
-export const editBook = (id, title, author) => {
+export const editBook = (id, title) => {
     return {
         type: EDIT_BOOK,
         id,
         title,
-        author
     }
 }
 
-export const switchEditable = (bookId) => {
-    return {
-        type: SWITCH_EDIT_STATUS,
-        id: bookId
-    }
+export const fetchSubjects = subject => dispatch => {
+  dispatch(requestSubjects())
+  return fetch(`http://localhost:3010/subjects`)
+    .then(response => response.json())
+    .then(json => dispatch(receiveSubjects(json)))
 }
 
-const fetchBooks = subject => dispatch => {
+export const fetchBooks = subject => dispatch => {
   dispatch(requestBooks(subject))
-  return fetch(`http://localhost:3010/books`)
+  return fetch(`http://localhost:3010/books?subjects_like=${subject}`)
     .then(response => response.json())
     .then(json => dispatch(receiveBooks(subject, json)))
+    .catch((e)=> {console.log(e)})
 }
 
 const shouldFetchBooks = (state, subject) => {

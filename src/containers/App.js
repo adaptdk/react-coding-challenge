@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {selectSubject, fetchBooksIfNeeded} from '../actions'
+import {selectSubject, fetchBooksIfNeeded, editBook, fetchSubjects} from '../actions'
 import Picker from '../components/Picker'
 import Books from '../components/Books'
-import { switchEditable, editBook } from '../actions'
 
 class App extends Component {
     static propTypes = {
-        selectedSubject: PropTypes.string.isRequired,
+        selectedSubject: PropTypes.array.isRequired,
         books: PropTypes.array.isRequired,
         isFetching: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired
@@ -17,6 +16,7 @@ class App extends Component {
     componentDidMount() {
         const {dispatch, selectedSubject} = this.props
         dispatch(fetchBooksIfNeeded(selectedSubject))
+        dispatch(fetchSubjects())
     }
 
     componentWillReceiveProps(nextProps) {
@@ -26,28 +26,30 @@ class App extends Component {
         }
     }
 
-    handleChange = nextSubject => {
-        this.props.dispatch(selectSubject(nextSubject))
+    handleChange = (options) => {
+        let values = [];
+        for (var i = 0, l = options.length; i < l; i++) {
+            if (options[i].selected) {
+                values.push(options[i].value);
+            }
+        }
+        this.props.dispatch(selectSubject(values))
     }
-    onClick = (id) => {
-        alert(2);
-        debugger;
-        this.props.dispatch(switchEditable(id))
-
-    }
-    completeEdit = (id, title, author) => {
-        this.props.dispatch(editBook(id, title, author));
-        this.props.dispatch(switchEditable(id));
+    completeEdit = (id, title) => {
+        this.props.dispatch(editBook(id, title));
     }
 
     render() {
-        const {selectedSubject, books, isFetching} = this.props
-        const isEmpty = books.length === 0
+        const {selectedSubject, books, subjects, isFetching} = this.props,
+            isEmpty = books.length === 0;
+
         return (
-            <div>
-                <Picker value={selectedSubject}
-                        onChange={this.handleChange}
-                        options={['', 'Fiction', 'Science']}/>
+            <div>{!isEmpty &&
+            <Picker value={[selectedSubject]}
+                    onChange={this.handleChange}
+                    options={['',...subjects.subjects]}/>
+            }
+
                 <p>
                 </p>
                 {isEmpty
@@ -60,23 +62,35 @@ class App extends Component {
                         />
                     </div>
                 }
+                <p>
+                </p>
+                <small>Click to edit, enter to save <br />
+                <hr/>
+                    (c) Eimantas, <a href="tel:+37067790818">+37067790818</a>
+                </small>
             </div>
+
+
+
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    const {selectedSubject, booksBySubject} = state
+    const {selectedSubject, booksBySubject} = state;
+
     const {
         isFetching,
-        items: books
+        items: books,
     } = booksBySubject[selectedSubject] || {
         isFetching: true,
         items: [],
+        subjects: [],
     }
     return {
         selectedSubject,
         books,
+        subjects: state.subjects,
         isFetching,
     }
 }

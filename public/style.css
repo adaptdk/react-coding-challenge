@@ -1,0 +1,30 @@
+select {
+    padding: 1px;
+    width: 150px;
+    margin: 0;
+    -webkit-appearance: none; /* remove the strong OSX influence from Webkit */
+}
+
+td {
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.title {
+    width: 400px;
+}
+
+label {
+    width: 100px;
+    display: block;
+    float: left;
+}
