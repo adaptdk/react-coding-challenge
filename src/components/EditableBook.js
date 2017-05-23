@@ -27,9 +27,7 @@ class EditableBook extends Component {
     onKeyPress = (e, fieldName) => {
         if (e.keyCode === 13) {
             e.preventDefault();
-            this.props.onComplete(this.state.title);
-            this.setState({title: ''});
-
+            this.props.onComplete(this.state);
         }
         else if (e.keyCode === 27) {
             this.props.onCancel();
@@ -44,19 +42,21 @@ class EditableBook extends Component {
     }
 
     render = () => (
-        <form key={this.key}>
+        <form key={this.key} onSubmit={() => this.props.onComplete(this.state)}>
             <label>Title</label> <input
-                type="text"
-                name="titleInput"
-                ref={input => this.titleInput = input}
-                value={this.state.title}
-                onChange={e => this.onChange(e, 'title')}
-                onKeyDown={e => this.onKeyPress(e, 'title')}
-            />
+            type="text"
+            name="titleInput"
+            ref={input => this.titleInput = input}
+            value={this.state.title}
+            onChange={e => this.onChange(e, 'title')}
+            onKeyDown={e => this.onKeyPress(e, 'title')}
+        />
             <br/>
-            <label>Author</label><input defaultValue={this.state.authors.map((item) => item.name)} />
+            <label>Author</label><input onChange={e => this.onChange(e, 'authors')}
+                                        value={this.state.authors.map((item) => item.name)}/>
             <br/>
-            <label>Bookshelves</label><input defaultValue={this.state.bookshelves} />
+            <label>Bookshelves</label><input onChange={e => this.onChange(e, 'bookshelves')}
+                                             value={this.state.bookshelves}/>
             <br/>
             <label>Subjects</label>
             <select
@@ -69,6 +69,10 @@ class EditableBook extends Component {
                         </option>)
                 }
             </select>
+            <p>
+                <input type="submit" value="Save"/>
+                <button onClick={() => this.props.onCancel}>Cancel</button>
+            </p>
         </form>
     );
 }

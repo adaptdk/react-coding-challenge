@@ -5,10 +5,17 @@ export default class Book extends Component {
     state = {
         editing: false
     }
+    componentWillReceiveProps = (nextProps) => {
+        console.log(nextProps);
+        this.setState({
+            id: nextProps.id,
+            title: nextProps.title,
+            bookshelves: nextProps.bookshelves
+        });
+    }
     onClick = () => {
         this.setState({editing: !this.state.editing})
     }
-
     render() {
         const {book, completeEdit} = this.props;
         return (
@@ -20,8 +27,8 @@ export default class Book extends Component {
                             {...book}
                             isActive
                             onCancel={() => this.onClick()}
-                            onComplete={(title) => {
-                                completeEdit(book.id, title);
+                            onComplete={(book) => {
+                                completeEdit(book);
                                 this.onClick();
                             }}
                         />
@@ -36,7 +43,9 @@ export default class Book extends Component {
                 }
                 <td> {!this.state.editing && book.authors.map((item) => item.name)}</td>
                 <td>
-                    <button onClick={() => this.onClick()}> {this.state.editing ? 'Cancel' : 'Edit'} </button>
+                    {!this.state.editing &&
+                        <button onClick={() => this.onClick()}>Edit</button>
+                    }
                 </td>
             </tr>
         )

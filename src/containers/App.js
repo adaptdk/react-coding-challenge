@@ -35,8 +35,8 @@ class App extends Component {
         }
         this.props.dispatch(selectSubject(values))
     }
-    completeEdit = (id, title) => {
-        this.props.dispatch(editBook(id, title));
+    completeEdit = (data) => {
+        this.props.dispatch(editBook(data, this.props.selectedSubject));
     }
 
     render() {
