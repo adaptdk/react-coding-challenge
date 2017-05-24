@@ -36,9 +36,19 @@ class EditableBook extends Component {
     }
 
     onChange = (e, fieldName) => {
-        this.setState({
-            [fieldName]: e.target.value
-        });
+
+        if (fieldName === 'authors') {
+            let stateCopy = Object.assign({}, this.state);
+            stateCopy.authors = stateCopy.authors.slice();
+            stateCopy.authors[0] = Object.assign({}, stateCopy.authors[0]);
+            stateCopy.authors[0].name = e.target.value;
+            this.setState(stateCopy);
+        }
+        else {
+            this.setState({
+                [fieldName]: e.target.value
+            });
+        }
     }
 
     render = () => (
