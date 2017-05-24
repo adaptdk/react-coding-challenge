@@ -17,13 +17,14 @@ export default class Book extends Component {
         this.setState({editing: !this.state.editing})
     }
     render() {
-        const {book, completeEdit} = this.props;
+        const {book, completeEdit, subjects} = this.props;
         return (
             <tr key={book.id}>
                 { this.state.editing ?
                     <td className="title">
                         <EditableBook
                             key={book.id}
+                            subjectOptions={subjects}
                             {...book}
                             isActive
                             onCancel={() => this.onClick()}

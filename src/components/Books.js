@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Book from './Book'
 
-const Books = ({books, onClick, completeEdit}) => (
+const Books = ({books, onClick, completeEdit, subjects}) => (
     <table>
         <thead>
         <tr>
-            <th  className="title">Title</th>
+            <th className="title">Title</th>
             <th>Authors</th>
             <th>Action</th>
         </tr>
@@ -14,9 +14,10 @@ const Books = ({books, onClick, completeEdit}) => (
         <tbody>
         {books.map((book) =>
             <Book key={book.id}
-                book={book}
-                onClick={onClick}
-                completeEdit={completeEdit}
+                  book={book}
+                  subjects={subjects}
+                  onClick={onClick}
+                  completeEdit={completeEdit}
             />
         )}
         </tbody>

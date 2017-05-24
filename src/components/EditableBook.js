@@ -1,6 +1,23 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 
+// Return an array of the selected opion values
+// select is an HTML select element
+const getSelectValues = (select) => {
+    let result = [],
+        options = select && select.options,
+        opt;
+
+    for (let i = 0, iLen = options.length; i < iLen; i++) {
+        opt = options[i];
+
+        if (opt.selected) {
+            result.push(opt.value || opt.text);
+        }
+    }
+    return result;
+}
+
 class EditableBook extends Component {
     static propTypes = {
         onBookAdd: PropTypes.func,
@@ -8,7 +25,8 @@ class EditableBook extends Component {
         onComplete: PropTypes.func.isRequired,
         onCancel: PropTypes.func,
         title: PropTypes.string,
-        author: PropTypes.string
+        author: PropTypes.string,
+        subjectOptions: PropTypes.array.isRequired,
     }
 
     constructor(props) {
@@ -44,13 +62,17 @@ class EditableBook extends Component {
             stateCopy.authors[0].name = e.target.value;
             this.setState(stateCopy);
         }
+        if (fieldName === 'subjects') {
+            this.setState({
+                'subjects': getSelectValues(e.target),
+            });
+        }
         else {
             this.setState({
                 [fieldName]: e.target.value
             });
         }
     }
-
     render = () => (
         <form key={this.key} onSubmit={() => this.props.onComplete(this.state)}>
             <label>Title</label> <input
@@ -68,12 +90,14 @@ class EditableBook extends Component {
             <label>Bookshelves</label><input onChange={e => this.onChange(e, 'bookshelves')}
                                              value={this.state.bookshelves}/>
             <br/>
-            <label>Subjects</label>
+            <label htmlFor="subjects">Subjects</label>
             <select
+                onChange={e => this.onChange(e, 'subjects')}
+                id="subjects"
                 multiple="multiple"
-                defaultValue={this.state.subjects}>
+                value={this.state.subjects}>
                 {
-                    this.state.subjects.map(option =>
+                    this.props.subjectOptions.map(option =>
                         <option value={option} key={option}>
                             {option}
                         </option>)

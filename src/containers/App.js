@@ -42,7 +42,6 @@ class App extends Component {
     render() {
         const {selectedSubject, books, subjects, isFetching} = this.props,
             isEmpty = books.length === 0;
-
         return (
             <div>{!isEmpty &&
             <Picker value={[selectedSubject]}
@@ -56,6 +55,7 @@ class App extends Component {
                     ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
                     : <div style={{opacity: isFetching ? 0.5 : 1}}>
                         <Books
+                            subjects={subjects.subjects}
                             books={books}
                             onClick={this.onClick}
                             completeEdit={this.completeEdit}
