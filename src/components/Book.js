@@ -1,21 +1,25 @@
 import React, {Component} from 'react';
-import EditableBook from './EditableBook'
+import EditableBook from './EditableBook';
+import PropTypes from 'prop-types';
 
 export default class Book extends Component {
-    state = {
-        editing: false
+    constructor(props) {
+        super(props);
+        this.state = {editing: false};
     }
-    componentWillReceiveProps = (nextProps) => {
-        console.log(nextProps);
+
+    componentWillReceiveProps(nextProps) {
         this.setState({
             id: nextProps.id,
             title: nextProps.title,
             bookshelves: nextProps.bookshelves
         });
     }
-    onClick = () => {
-        this.setState({editing: !this.state.editing})
+
+    onClick() {
+        this.setState({editing: !this.state.editing});
     }
+
     render() {
         const {book, completeEdit, subjects} = this.props;
         return (
@@ -35,20 +39,31 @@ export default class Book extends Component {
                         />
                     </td>
                     :
-                    [
-                        <td  key={book.id} className="title">
-                            <span onClick={() => this.onClick()}>{book.title}</span>
-                        </td>
+                [
+                    <td key={book.id} className="title">
+                        <span onClick={() => this.onClick()}>{book.title}</span>
+                    </td>
 
-                    ]
+                ]
                 }
                 <td> {!this.state.editing && book.authors.map((item) => item.name)}</td>
                 <td>
                     {!this.state.editing &&
-                        <button onClick={() => this.onClick()}>Edit</button>
+                    <button onClick={() => this.onClick()}>Edit</button>
                     }
                 </td>
             </tr>
-        )
+        );
     }
 }
+
+
+Book.propTypes = {
+    id: PropTypes.number,
+    title: PropTypes.string,
+    book: PropTypes.object.isRequired,
+    bookshelves: PropTypes.string,
+    completeEdit: PropTypes.func.isRequired,
+    subjects: PropTypes.array.isRequired,
+};
+
