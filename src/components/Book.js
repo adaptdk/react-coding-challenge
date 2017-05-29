@@ -12,10 +12,10 @@ export default class Book extends Component {
         this.setState({
             id: nextProps.id,
             title: nextProps.title,
-            bookshelves: nextProps.bookshelves
+            bookshelves: nextProps.bookshelves,
+            subjects: nextProps.subjects,
         });
     }
-
     onClick() {
         this.setState({editing: !this.state.editing});
     }
@@ -32,6 +32,7 @@ export default class Book extends Component {
                             {...book}
                             isActive
                             onCancel={() => this.onClick()}
+                            refreshBooks={(selectedSubject) => this.refreshBooks(selectedSubject)}
                             onComplete={(book) => {
                                 completeEdit(book);
                                 this.onClick();
@@ -47,6 +48,7 @@ export default class Book extends Component {
                 ]
                 }
                 <td> {!this.state.editing && book.authors.map((item) => item.name)}</td>
+                <td> {!this.state.editing && book.subjects.map((item) => item)}</td>
                 <td>
                     {!this.state.editing &&
                     <button onClick={() => this.onClick()}>Edit</button>

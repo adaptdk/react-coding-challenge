@@ -32,17 +32,10 @@ export const requestBooks = subject => ({
     subject
 });
 
-export function addBook(game) {
-    return {
-        type: ADD_BOOK,
-        game
-    };
-}
-
-export function bookUpdated(game) {
+export function bookUpdated(book) {
     return {
         type: BOOK_UPDATED,
-        game
+        book
     };
 }
 

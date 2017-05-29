@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Book from './Book';
 
-const Books = ({books, completeEdit, subjects}) => (
+const Books = ({books, completeEdit, subjects, refreshBooks}) => (
     <table>
         <thead>
             <tr>
@@ -17,6 +17,7 @@ const Books = ({books, completeEdit, subjects}) => (
                   book={book}
                   subjects={subjects}
                   completeEdit={completeEdit}
+                  refreshBooks={refreshBooks}
             />
         )}
         </tbody>
@@ -26,6 +27,7 @@ const Books = ({books, completeEdit, subjects}) => (
 Books.propTypes = {
     books: PropTypes.array.isRequired,
     completeEdit: PropTypes.func.isRequired,
+    refreshBooks: PropTypes.func.isRequired,
     subjects: PropTypes.array.isRequired,
 };
 

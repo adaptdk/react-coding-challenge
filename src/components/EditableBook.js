@@ -28,6 +28,7 @@ class EditableBook extends Component {
     }
 
     onChange(e, fieldName) {
+        delete this.state.subjectOptions;
         switch (fieldName) {
         case 'authors': {
             let stateCopy = Object.assign({}, this.state);
@@ -41,6 +42,7 @@ class EditableBook extends Component {
             this.setState({
                 'subjects': getSelectValues(e.target),
             });
+            this.selectedSubject(e.target);
             break;
         default:
             this.setState({

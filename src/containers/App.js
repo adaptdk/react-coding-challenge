@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {selectSubject, fetchBooksIfNeeded, editBook, fetchSubjects} from '../actions';
+import {selectSubject, fetchBooksIfNeeded, editBook, fetchSubjects, invalidateSubject} from '../actions';
 import Picker from '../components/Picker';
 import Books from '../components/Books';
 import getSelectValues from '../utils/select';
@@ -20,6 +20,10 @@ class App extends Component {
         }
     }
 
+    refreshBooks(selectedSubject) {
+        this.props.dispatch(invalidateSubject(selectedSubject));
+    }
+
     handleChange(options) {
         this.props.dispatch(selectSubject(getSelectValues(options)));
     }
@@ -32,11 +36,11 @@ class App extends Component {
         const {selectedSubject, books, subjects, isFetching} = this.props,
             isEmpty = books.length === 0;
         return (
-            <div>{!isEmpty &&
-            <Picker values={selectedSubject}
-                    onChange={(options) =>  this.handleChange(options)}
-                    options={['', ...subjects.subjects]}/>
-            }
+            <div>
+                <Picker values={selectedSubject}
+                        onChange={(options) => this.handleChange(options)}
+                        options={['', ...subjects.subjects]}/>
+
 
                 <p>
                 </p>
@@ -46,7 +50,12 @@ class App extends Component {
                         <Books
                             subjects={subjects.subjects}
                             books={books}
-                            completeEdit={(data) => { this.completeEdit(data); } }
+                            completeEdit={(data) => {
+                                this.completeEdit(data);
+                            }}
+                            refreshBooks={(selectedSubject) => {
+                                this.refreshBooks(selectedSubject);
+                            }}
                         />
                     </div>
                 }
