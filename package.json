@@ -1,14 +1,37 @@
 {
   "name": "react-coding-challenge",
   "version": "1.0.0",
-  "description": "A package containing a simple dummy book API, which should be used in the challenge",
-  "scripts": {
-    "start": "json-server --port 3010 --watch api.json"
-  },
-  "keywords": ["react challenge", "tryouts", "react developer", "hiring"],
+  "description": "Coding challenge implementation based on create-react-app + redux + redux-form + react-bootstrap.",
+  "keywords": [
+    "react challenge",
+    "tryouts",
+    "react developer",
+    "hiring"
+  ],
   "author": "Adapt A/S",
   "license": "ISC",
-  "devDependencies": {
-    "json-server": "0.10.1"
+  "scripts": {
+    "start": "concurrently \"yarn run start:server\" \"yarn run start:client\"",
+    "start:client": "react-scripts start",
+    "start:server": "json-server --port 3010 --watch ./api/api.json",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "bootstrap": "3",
+    "concurrently": "^3.5.0",
+    "enzyme": "^2.9.1",
+    "json-server": "^0.10.3",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-scripts": "1.0.10",
+    "react-test-renderer": "^15.6.1",
+    "redux": "^3.7.1",
+    "redux-form": "^6.8.0",
+    "redux-thunk": "^2.2.0"
   }
 }

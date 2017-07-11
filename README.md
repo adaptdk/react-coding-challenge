@@ -54,8 +54,26 @@ install` once starting working on the project to install dependencies.
 | /books?subjects_like=Fiction | Lists all books that contain "Fiction" as a subject |
 | /subjects                    | Lists all available subjects                        |
 
+## Implementation
+
+To save time on build process configuration [Create React App](https://github.com/facebookincubator/create-react-app) starter project was chosen as a base for this solution.
+
+Here's the short list of libraries that has been used to speed up implementation itself.
+
+| Library                           | Description                                                              |
+|-----------------------------------|--------------------------------------------------------------------------|
+| redux                             | State container for React                                                |
+| redux-form                        | Easy redux state connection with forms                                   |
+| react-bootstrap                   | Basic styling and components corresponding Bootstrap UI framework        |
+
+Redux actions and reducers were bundled together based on [ducks-modular-redux](https://github.com/erikras/ducks-modular-redux) proposal as it's more readable in single modules.
+
+### Running the project
+
+1. Install dependencies by running `yarn` command.
+2. Start the application by running `yarn start` script.
+
 ---
 
 More info about API usage can be found at the [json-server
 repo](https://github.com/typicode/json-server).
-
