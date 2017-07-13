@@ -8,7 +8,8 @@ const Books = ({books, completeEdit, subjects, refreshBooks}) => (
             <tr>
                 <th className="title">Title</th>
                 <th>Authors</th>
-                <th>Action</th>
+                <th>Subjects</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>

@@ -31,8 +31,8 @@ export default class Book extends Component {
                             subjectOptions={subjects}
                             {...book}
                             isActive
-                            onCancel={() => this.onClick()}
-                            refreshBooks={(selectedSubject) => this.refreshBooks(selectedSubject)}
+                            onCancel={this.onClick}
+                            refreshBooks={this.props.refreshBooks}
                             onComplete={(book) => {
                                 completeEdit(book);
                                 this.onClick();
@@ -48,7 +48,7 @@ export default class Book extends Component {
                 ]
                 }
                 <td> {!this.state.editing && book.authors.map((item) => item.name)}</td>
-                <td> {!this.state.editing && book.subjects.map((item) => item)}</td>
+                <td className="ct"> {!this.state.editing && book.subjects.join(', ')}</td>
                 <td>
                     {!this.state.editing &&
                     <button onClick={() => this.onClick()}>Edit</button>
@@ -66,6 +66,7 @@ Book.propTypes = {
     book: PropTypes.object.isRequired,
     bookshelves: PropTypes.string,
     completeEdit: PropTypes.func.isRequired,
+    refreshBooks: PropTypes.func.isRequired,
     subjects: PropTypes.array.isRequired,
 };
 

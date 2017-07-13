@@ -12,8 +12,6 @@ td {
     white-space: nowrap;
 }
 
-
-
 table {
     width: 100%;
     table-layout: fixed;
@@ -27,4 +25,7 @@ label {
     width: 100px;
     display: block;
     float: left;
+}
+.ct {
+    text-align: center;
 }

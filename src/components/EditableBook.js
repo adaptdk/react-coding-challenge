@@ -42,6 +42,7 @@ class EditableBook extends Component {
             this.setState({
                 subjects: getSelectValues(e.target),
             });
+            this.props.refreshBooks(getSelectValues(e.target));
             break;
         default:
             this.setState({
@@ -96,6 +97,7 @@ EditableBook.propTypes = {
     isActive: PropTypes.bool.isRequired,
     onComplete: PropTypes.func.isRequired,
     onCancel: PropTypes.func,
+    refreshBooks: PropTypes.func,
     title: PropTypes.string,
     author: PropTypes.string,
     subjectOptions: PropTypes.array.isRequired,
