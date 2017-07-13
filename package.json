@@ -2,13 +2,39 @@
   "name": "react-coding-challenge",
   "version": "1.0.0",
   "description": "A package containing a simple dummy book API, which should be used in the challenge",
-  "scripts": {
-    "start": "json-server --port 3010 --watch api.json"
-  },
-  "keywords": ["react challenge", "tryouts", "react developer", "hiring"],
+  "keywords": [
+    "react challenge",
+    "tryouts",
+    "react developer",
+    "hiring"
+  ],
   "author": "Adapt A/S",
   "license": "ISC",
+  "dependencies": {
+    "prop-types": "^15.5.8",
+    "react": "^15.5.0",
+    "react-dom": "^15.5.0",
+    "react-redux": "^5.0.3",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0",
+    "json-server": "0.10.1",
+    "redux-logger": "^3.0.0"
+  },
+  "scripts": {
+    "start": "json-server --port 3010 --watch api.json | react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "test": "react-scripts test",
+
+    "lint": "node_modules/.bin/eslint src"
+  },
   "devDependencies": {
-    "json-server": "0.10.1"
+    "autoprefixer": "^6.3.6",
+    "babel-eslint": "^6.0.4",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1"
   }
 }
