@@ -14,7 +14,6 @@
     "prop-types": "^15.5.8",
     "react": "^15.5.0",
     "react-dom": "^15.5.0",
-    "react-dropdown-multiselect": "^1.0.0",
     "react-redux": "^5.0.3",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
@@ -22,11 +21,11 @@
     "redux-logger": "^3.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "json-server --port 3010 --watch api.json | react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "test": "react-scripts test",
-    "server": "json-server --port 3010 --watch api.json",
+
     "lint": "node_modules/.bin/eslint src"
   },
   "devDependencies": {

@@ -40,9 +40,8 @@ class EditableBook extends Component {
         }
         case 'subjects':
             this.setState({
-                'subjects': getSelectValues(e.target),
+                subjects: getSelectValues(e.target),
             });
-            this.selectedSubject(e.target);
             break;
         default:
             this.setState({

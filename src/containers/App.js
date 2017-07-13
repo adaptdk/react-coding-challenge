@@ -35,6 +35,10 @@ class App extends Component {
     render() {
         const {selectedSubject, books, subjects, isFetching} = this.props,
             isEmpty = books.length === 0;
+
+        if(subjects.subjects == undefined){
+            subjects.subjects = [];
+        }
         return (
             <div>
                 <Picker values={selectedSubject}
