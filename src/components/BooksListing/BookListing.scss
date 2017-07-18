@@ -1,0 +1,17 @@
+@import '../../styles/mixins';
+
+.book-listing {
+
+  .book-item {
+
+    border-bottom: 1px solid rgba(0,0,0,.1);
+
+    @include defaultHoverEffect;
+
+    &.state--active {
+      border: 1px solid red;
+    }
+
+  }
+
+}
