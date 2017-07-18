@@ -1,0 +1,32 @@
+@import '../../styles/mixins';
+
+$value-selector-item-height: 50px;
+
+.value-selector-container {
+
+  text-align: center;
+  @include makeFlexAndCenter();
+
+  > div:not(:first-child){
+    margin-left: 10px;
+  }
+
+  .value-selector-item {
+    display: inline-block;
+    font-size: 16px;
+    height: $value-selector-item-height;
+    width: $value-selector-item-height + 50px;
+    padding: 10px;
+    color: rgba(0,0,0,.7);
+    border: 1px solid rgba(0,0,0,.1);
+
+    @include makeFlexAndCenter();
+    @include defaultHoverEffect();
+
+    &.state--active {
+      color: #fff;
+      border: none;
+      background: lightskyblue;
+    }
+  }
+}

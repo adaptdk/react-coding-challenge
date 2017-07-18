@@ -1,0 +1,51 @@
+@import './vars';
+
+@mixin size($dimensions) {
+  width: $dimensions;
+  height: $dimensions;
+}
+
+@mixin makeFlexAndCenter(){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin center-vh {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+@mixin defaultHoverEffect {
+  transition: opacity 0.2s;
+  &:hover {
+    opacity: $default-hover-opacity;
+    cursor: $default-hover-cursor;
+  }
+}
+
+@mixin center-v() {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin noMargin {
+  margin: 0;
+}
+
+@mixin noPadding {
+  padding: 0;
+}
+
+@mixin marginVertical($value){
+  margin-top: $value;
+  margin-bottom: $value;
+}
+
+@mixin paddingVertical($value){
+  padding-top: $value;
+  padding-bottom: $value;
+}
