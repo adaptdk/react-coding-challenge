@@ -1,0 +1,27 @@
+<style>
+body {
+    direction: rtl;
+}
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+     flex-wrap: wrap;
+    width: 700px;
+    height: 500px;
+    background-color: lightgrey;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex-item {
+    background-color: #f4ce42;
+    width: 300px;
+    height: 200px;
+    margin: 10px;
+}
+.book-title {
+    font-weight: bold;
+}
+
+</style>
