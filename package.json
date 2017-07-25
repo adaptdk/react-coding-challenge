@@ -5,10 +5,25 @@
   "scripts": {
     "start": "json-server --port 3010 --watch api.json"
   },
-  "keywords": ["react challenge", "tryouts", "react developer", "hiring"],
+  "keywords": [
+    "react challenge",
+    "tryouts",
+    "react developer",
+    "hiring"
+  ],
   "author": "Adapt A/S",
   "license": "ISC",
   "devDependencies": {
     "json-server": "0.10.1"
+  },
+  "jspm": {
+    "directories": {
+      "baseURL": "ui"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
   }
 }
