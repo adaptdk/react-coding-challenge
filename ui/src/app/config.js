@@ -3,6 +3,7 @@ import React from 'react';
 import { RootRedirecter } from './route-utils';
 import About from './about-comp';
 import Books from './books-comp';
+import Details from './details-comp';
 
 
 export const routes = [
@@ -18,7 +19,7 @@ export const routes = [
     routes: [
       { 
         path: '/books/:subject/:id',
-        component: () => (<h1>Details page</h1>),
+        component: Details,
       },
     ],
   },
