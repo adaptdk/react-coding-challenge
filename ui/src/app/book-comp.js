@@ -47,7 +47,7 @@ export class Book extends Component {
   }
 
   render() {
-    const { subject } = this.props;
+    const { routes, subject } = this.props;
     const { books } = this.state;
 
     return (
@@ -67,6 +67,16 @@ export class Book extends Component {
             })}
           </ListGroup>
         </Row>
+        <Row className="sub-content">
+          {routes.map((route, i) => {
+            return (
+              <RoutesRenderer 
+                key={i} 
+                {...{ ...route, context: {subject} }}
+              />
+            );
+          })}
+        </Row>
       </Col>
     );
   }
@@ -74,6 +84,7 @@ export class Book extends Component {
 
 Book.propTypes = {
   subject: PropTypes.string.isRequired,
+  routes: PropTypes.array.isRequired,
 };
 
 export default Book;

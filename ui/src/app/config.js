@@ -15,6 +15,12 @@ export const routes = [
     path: '/books',
     exact: true,
     component: Books,
+    routes: [
+      { 
+        path: '/books/:subject/:id',
+        component: () => (<h1>Details page</h1>),
+      },
+    ],
   },
   { 
     path: '/about',

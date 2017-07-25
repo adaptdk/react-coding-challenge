@@ -8,11 +8,11 @@ import {
 } from './constants';
 
 
-const BookTabs = ({ subjects }) => {
+const BookTabs = ({ subjects, routes }) => {
   const createTabs = () => (subjects.map((subject, idx) => {
     return (
       <Tab eventKey={idx} key={idx} title={subject}>
-        <Book subject={subject} />
+        <Book subject={subject} routes={routes}/>
       </Tab>
     );
   }));
@@ -26,6 +26,7 @@ const BookTabs = ({ subjects }) => {
 
 BookTabs.propTypes = {
   subjects: PropTypes.array.isRequired,
+  routes: PropTypes.array.isRequired,
 };
 
 class Books extends Component {
@@ -41,11 +42,12 @@ class Books extends Component {
   }
 
   render() {
+    const { routes } = this.props;
     const { subjects } = this.state;
-    
+
     return (
       <div>
-        <BookTabs subjects={subjects}/>
+        <BookTabs subjects={subjects} routes={routes}/>
       </div>
     );
   }
