@@ -56,6 +56,10 @@ export class Details extends Component {
     if (params.id !== nextParams.id || params.subject !== nextParams.subject) {
       this.fetchBookDetails(nextParams);
     }
+
+    if (nextParams.subject !== nextProps.context.subject) {
+      this.setState({ ...defaultState, ...{ renderDetails: false } });
+    }
   }
 
   fetchBookDetails(params) {
