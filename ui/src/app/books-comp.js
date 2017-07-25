@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Tabs, Tab } from 'react-bootstrap';
+import { Tabs, Tab, Alert } from 'react-bootstrap';
 
 import Book from './book-comp';
 import { get } from './fetch-utils';
@@ -47,7 +47,12 @@ class Books extends Component {
 
     return (
       <div>
-        <BookTabs subjects={subjects} routes={routes}/>
+        {subjects.length >= 0 ? 
+          <BookTabs subjects={subjects} routes={routes}/> : 
+          <Alert bsStyle="danger">
+            <h4>Oh snap! You got an error!</h4>
+          </Alert>
+        }
       </div>
     );
   }

@@ -7,18 +7,23 @@ import {
   FormControl,
   Button,
   Jumbotron,
+  ButtonToolbar,
 } from 'react-bootstrap';
 import _ from 'underscore';
 
-import { get, put } from './fetch-utils';
+import { get, put, post, del } from './fetch-utils';
 import { renderInputText, renderInputNumber } from './ui-utils';
 import { 
   BOOK_DETAIL_API_PATH,
-  BOOK_DETAIL_UPDATE_API_PATH, 
+  BOOK_DETAIL_UPDATE_API_PATH,
+  BOOK_DETAIL_CREATE_API_PATH, 
+  BOOK_DELETE_API_PATH,
+  BOOKS_ROUTE_PATH,
 } from './constants';
 
 const bookDetailsPath = pathToRegexp.compile(BOOK_DETAIL_API_PATH);
 const bookUpdatePath = pathToRegexp.compile(BOOK_DETAIL_UPDATE_API_PATH);
+const bookDeletePath = pathToRegexp.compile(BOOK_DELETE_API_PATH);
 
 const defaultState = {
   details: {
@@ -103,7 +108,7 @@ export class Details extends Component {
     this.setState({ ...detailsToUpdate });
   }
 
-  submitHandler(event) {
+  updateHandler(event) {
     event.preventDefault();
     const { params } = this.props.match;
     const { details } = this.state; 
@@ -112,6 +117,41 @@ export class Details extends Component {
       .catch(() => {/* display ugly message */});
   }
 
+  createHandler(event) {
+    event.preventDefault();
+    const { history } = this.props;
+    const { details } = { ...this.state };
+    delete details.id; 
+
+    post(BOOK_DETAIL_CREATE_API_PATH, details)
+      .then(() => {
+        const location = {
+          pathname: BOOKS_ROUTE_PATH,
+          context: { update: true },
+        };
+
+        history.replace(location);
+      })
+      .catch(() => {/* display ugly message */});
+  }
+
+  deleteHandler(event) {
+    event.preventDefault();
+    const { params } = this.props.match;
+    const { history } = this.props;
+    const { details } = this.state; 
+    del(bookDeletePath({ id: params.id }), details)
+      .then(() => {
+        const location = {
+          pathname: BOOKS_ROUTE_PATH,
+          context: { update: true },
+        };
+
+        history.replace(location);
+      })
+      .catch(() => {/* display ugly message */});
+  }
+  
   addFormatHandler(event) {
     event.preventDefault();
     let { details: detailsToUpdate } = this.state;
@@ -145,6 +185,13 @@ export class Details extends Component {
 
     return (
       <div>
+        {/* 
+          Ugly form code. But as I remember it's 
+          always difficult to work with forms in react.
+          I'm to much tired to start using react-redux with redux-form.
+          Flux architecture (redux) can help to seperate all logic,
+          but I don't want to investigate to much in this for such simple app.
+        */}
         {(details.id ? renderDetails : false) ? (
           <Form horizontal>
             {
@@ -229,6 +276,10 @@ export class Details extends Component {
                   Format key
                 </Col>
                 <Col sm={7}>
+                  {/* 
+                      Not very nice solution but don't want to play
+                      with other libraries (redux-form, ...) 
+                  */} 
                   <FormControl 
                     type="text"
                     inputRef={(ref) => {this.formatKeyInput = ref;}}
@@ -241,6 +292,9 @@ export class Details extends Component {
                   Format value
                 </Col>
                 <Col sm={7}>
+                  {/* 
+                      The same as above. Ugly solution
+                  */}
                   <FormControl 
                     type="text"
                     inputRef={(ref) => {this.formatValueInput = ref;}}
@@ -261,9 +315,20 @@ export class Details extends Component {
             </Jumbotron>
             <FormGroup>
               <Col sm={10}>
-                <Button type="submit" onClick={this.submitHandler.bind(this)}>
-                  Update
-                </Button>
+                <ButtonToolbar>
+                  <Button type="submit" onClick={this.updateHandler.bind(this)}>
+                    Update
+                  </Button>
+                  <Button type="submit" onClick={this.createHandler.bind(this)}>
+                    Create
+                  </Button>
+                  <Button bsStyle="danger" 
+                    type="submit" 
+                    onClick={this.deleteHandler.bind(this)}
+                  >
+                    Delete
+                  </Button>
+                </ButtonToolbar>
               </Col>
             </FormGroup>
           </Form>
