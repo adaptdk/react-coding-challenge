@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "A package containing a simple dummy book API, which should be used in the challenge",
   "scripts": {
-    "start": "json-server --port 3010 --watch api.json"
+    "start-api": "json-server --port 3010 --watch api.json",
+    "start-ui": "node index.js"
   },
   "keywords": [
     "react challenge",
