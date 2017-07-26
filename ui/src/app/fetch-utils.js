@@ -112,21 +112,3 @@ export function del(url) {
     method: 'delete',
   });
 }
-
-export function fixedEncodeURIComponent(str) {
-  return encodeURIComponent(str).replace(/[!'()*]/g, (c) => {
-    return `%${c.charCodeAt(0).toString(16)}`;
-  });
-}
-
-export const createQueryUrl = (obj = {}) => {
-  const createItem = (k) => `${fixedEncodeURIComponent(k)}=${fixedEncodeURIComponent(obj[k])}`;
-  
-  return Object.keys(obj).map(createItem).join('&');
-};
-
-export const createQueryWithAmpPrefix = (obj) => {
-  const queryUrl = createQueryUrl(obj);
-  
-  return queryUrl ? `&${queryUrl}` : '';
-};

@@ -8,4 +8,3 @@ export const BOOK_DETAIL_CREATE_API_PATH = '/books';
 
 export const BOOK_DETAIL_ROUTE_PATH = '/books/:subject/:id';
 export const BOOKS_ROUTE_PATH = '/books';
-

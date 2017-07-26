@@ -29,7 +29,7 @@ BookTabs.propTypes = {
   routes: PropTypes.array.isRequired,
 };
 
-class Books extends Component {
+class Subject extends Component {
   constructor(props) {
     super(props);
     this.state = { subjects: [] };
@@ -58,4 +58,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Subject;

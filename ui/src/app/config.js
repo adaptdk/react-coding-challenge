@@ -2,7 +2,7 @@ import React from 'react';
 
 import { RootRedirecter } from './route-utils';
 import About from './about-comp';
-import Books from './books-comp';
+import Subject from './subject-comp';
 import Details from './details-comp';
 
 
@@ -15,7 +15,7 @@ export const routes = [
   { 
     path: '/books',
     exact: true,
-    component: Books,
+    component: Subject,
     routes: [
       { 
         path: '/books/:subject/:id',
