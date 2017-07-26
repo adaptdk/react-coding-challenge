@@ -24,12 +24,8 @@ System.config({
     "react": "npm:react@15.6.1",
     "react-bootstrap": "npm:react-bootstrap@0.31.1",
     "react-dom": "npm:react-dom@15.6.1",
-    "react-helmet": "npm:react-helmet@5.1.3",
-    "react-intl": "npm:react-intl@2.3.0",
-    "react-redux": "npm:react-redux@5.0.5",
     "react-router": "npm:react-router@4.1.2",
     "react-router-bootstrap": "npm:react-router-bootstrap@0.24.2",
-    "react-router-config": "npm:react-router-config@1.0.0-beta.3",
     "react-router-dom": "npm:react-router-dom@4.1.2",
     "underscore": "npm:underscore@1.8.3",
     "github:floatdrop/plugin-jsx@1.2.1": {
@@ -414,12 +410,6 @@ System.config({
     "npm:inherits@2.0.3": {
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:intl-messageformat@1.3.0": {
-      "intl-messageformat-parser": "npm:intl-messageformat-parser@1.2.0"
-    },
-    "npm:intl-relativeformat@1.3.0": {
-      "intl-messageformat": "npm:intl-messageformat@1.3.0"
-    },
     "npm:invariant@2.2.2": {
       "loose-envify": "npm:loose-envify@1.3.1",
       "process": "github:jspm/nodelibs-process@0.1.2"
@@ -573,23 +563,6 @@ System.config({
       "prop-types": "npm:prop-types@15.5.10",
       "react": "npm:react@15.6.1"
     },
-    "npm:react-helmet@5.1.3": {
-      "deep-equal": "npm:deep-equal@1.0.1",
-      "object-assign": "npm:object-assign@4.1.1",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "prop-types": "npm:prop-types@15.5.10",
-      "react": "npm:react@15.6.1",
-      "react-side-effect": "npm:react-side-effect@1.1.3"
-    },
-    "npm:react-intl@2.3.0": {
-      "intl-format-cache": "npm:intl-format-cache@2.0.5",
-      "intl-messageformat": "npm:intl-messageformat@1.3.0",
-      "intl-relativeformat": "npm:intl-relativeformat@1.3.0",
-      "invariant": "npm:invariant@2.2.2",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "prop-types": "npm:prop-types@15.5.10",
-      "react": "npm:react@15.6.1"
-    },
     "npm:react-overlays@0.7.0": {
       "classnames": "npm:classnames@2.2.5",
       "dom-helpers": "npm:dom-helpers@3.2.1",
@@ -603,25 +576,10 @@ System.config({
       "react": "npm:react@15.6.1",
       "warning": "npm:warning@3.0.0"
     },
-    "npm:react-redux@5.0.5": {
-      "create-react-class": "npm:create-react-class@15.6.0",
-      "hoist-non-react-statics": "npm:hoist-non-react-statics@1.2.0",
-      "invariant": "npm:invariant@2.2.2",
-      "lodash": "npm:lodash@4.17.4",
-      "lodash-es": "npm:lodash-es@4.17.4",
-      "loose-envify": "npm:loose-envify@1.3.1",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "prop-types": "npm:prop-types@15.5.10",
-      "react": "npm:react@15.6.1"
-    },
     "npm:react-router-bootstrap@0.24.2": {
       "prop-types": "npm:prop-types@15.5.10",
       "react": "npm:react@15.6.1",
       "react-router-dom": "npm:react-router-dom@4.1.2"
-    },
-    "npm:react-router-config@1.0.0-beta.3": {
-      "react": "npm:react@15.6.1",
-      "react-router": "npm:react-router@4.1.2"
     },
     "npm:react-router-dom@4.1.2": {
       "history": "npm:history@4.6.3",
@@ -639,10 +597,6 @@ System.config({
       "prop-types": "npm:prop-types@15.5.10",
       "react": "npm:react@15.6.1",
       "warning": "npm:warning@3.0.0"
-    },
-    "npm:react-side-effect@1.1.3": {
-      "exenv": "npm:exenv@1.2.2",
-      "shallowequal": "npm:shallowequal@1.0.2"
     },
     "npm:react-tools@0.13.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.1",

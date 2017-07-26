@@ -46,9 +46,16 @@ export class Book extends Component {
     });
   }
 
+  onDetailsChange() {
+    // Update component if books details info was changed
+    const { subject } = this.props;
+    this.fetchBooks(subject);
+  }
+
   render() {
     const { routes, subject } = this.props;
     const { books } = this.state;
+    const onDetailsChange = this.onDetailsChange.bind(this);
 
     return (
       <Col>
@@ -72,7 +79,7 @@ export class Book extends Component {
             return (
               <RoutesRenderer 
                 key={i} 
-                {...{ ...route, context: {subject} }}
+                {...{ ...route, context: {subject, onDetailsChange} }}
               />
             );
           })}

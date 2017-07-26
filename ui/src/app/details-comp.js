@@ -119,7 +119,7 @@ export class Details extends Component {
 
   createHandler(event) {
     event.preventDefault();
-    const { history } = this.props;
+    const { history, context: { onDetailsChange } } = this.props;
     const { details } = { ...this.state };
     delete details.id; 
 
@@ -130,6 +130,8 @@ export class Details extends Component {
           context: { update: true },
         };
 
+        onDetailsChange();
+
         history.replace(location);
       })
       .catch(() => {/* display ugly message */});
@@ -138,7 +140,7 @@ export class Details extends Component {
   deleteHandler(event) {
     event.preventDefault();
     const { params } = this.props.match;
-    const { history } = this.props;
+    const { history, context: { onDetailsChange } } = this.props;
     const { details } = this.state; 
     del(bookDeletePath({ id: params.id }), details)
       .then(() => {
@@ -146,6 +148,8 @@ export class Details extends Component {
           pathname: BOOKS_ROUTE_PATH,
           context: { update: true },
         };
+
+        onDetailsChange();
 
         history.replace(location);
       })
