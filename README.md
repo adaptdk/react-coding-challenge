@@ -1,61 +1,24 @@
-# Adapt React Coding Challenge
+# My solution for `Adapt React Coding Challenge`
+All steps was acomplished but not in nice way. There are much to be improvment.
+Still this quiz was interesting for me and give me opportunity to remember how to work with react.
 
-Seems like you're trying out for a position at
-[Adapt](https://adapt.dk/en) or you've found this and would like to
-apply.  Fork this repo and go at it ;)
+What should be done (what kind of improvement must be done):
 
-Your goal is to set up a React application, where users will be able to
-edit book info (and create new books, if you have enough time to
-implement it). Once you are done with the challenge, please fire up a
-Pull Request and we will get in touch.
+* Decouple code by using flux architecture. Such pattern should seperate view from logic
+* Implement error handling in case if api server will not respond
+* Refactor code
+* and much more ... :(
 
-## Brief
+# How to run
 
-I am a user of the app and I want to create a book object and edit
-previously provided info about it, so that my reading list can stay up
-to date. The form should be split into three steps:
+I'm usin SystemJS for building jspm for dependency managament and live-server for serving application
 
-1.  Choose subject (one of the two).
-2.  Depending on the selection in the first step, display a list of
-    reading material. Choose one.
-3.  When reading material chosen, display all the info that's available
-    about the book in a form (meaning that the book info can be edited).
+First of all install dependencies:
 
-## Requirements
+* npm install && npm i --dev
+* jspm install && jspm i --dev
 
-*   All steps should be visible on the screen and changable at all times
-    (when they are available -- step 1 when nothing is picked, step 1
-    and 2 when step 1 is picked and step 1, 2 and 3 when step 2 is
-    picked).
+Then run application:
 
-*   You can use whatever libraries, task runners and build processes you
-    like. React and plain JavaScript are the only requirements (ES6
-    encouraged, but no TypeScript, CoffeeScript, etc). Redux is strongly
-    encouraged if you see a need for it.
-
-### Suggested order of completion
-
-This depends on how much time you were given to accomplish the task.
-Ideally you would provide a solution for each of the outlined steps
-unless they are marked as optional.
-
-1.  Data fetching from the api.
-2.  Form steps logic.
-3.  (optional) Saving the data.
-4.  (optional) Styling (minor for a 2-3 h challenge, more if there's more time).
-
-## API Usage
-
-API can be launched using `npm start`. You will need to run `npm
-install` once starting working on the project to install dependencies.
-
-| Endpoint                     | Result                                              |
-|------------------------------|-----------------------------------------------------|
-| /books?subjects_like=Fiction | Lists all books that contain "Fiction" as a subject |
-| /subjects                    | Lists all available subjects                        |
-
----
-
-More info about API usage can be found at the [json-server
-repo](https://github.com/typicode/json-server).
-
+* npm run start-api
+* npm run start-ui
