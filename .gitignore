@@ -1,2 +1,4 @@
-npm-debug.log
-node_modules
+.idea/
+node_modules/
+public/js/
+public/css/
