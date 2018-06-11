@@ -1,0 +1,109 @@
+<html>
+<head>
+<script src="https://unpkg.com/react@16/umd/react.development.js"> </script><script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+</script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<!-- <script type="text/javascript" src="../api.json"></script> -->
+</head>
+<body>
+	yo
+    <div id="root"></div>
+    <script type="text/babel">
+    
+    /* 
+    ADD REACT CODE HERE 
+    */
+
+    class App extends React.Component {	
+	    constructor(){
+	        super();
+	        this.state = {
+	            subject: false,
+	            subjects: ["Fiction", "Science"]
+	        };
+	        this.updateSubject = this.updateSubject.bind(this);
+	    }
+	    updateSubject(subject) {
+		    fetch('subjects')
+			    .then((results) => results.json())
+		    	.then((data) =>
+			        this.setState({
+			            subject: subject,
+			            subjects: data
+			        })
+	        	);
+	    }
+	    fetchSubjects() {
+	    	/* NOT IN USE */
+			let arrayTest = [];
+				    	let subjectButtons = [];
+						fetch('subjects')
+							.then((results) => results.json())
+							.then((data) => {
+						    	data.forEach(function(subject){
+						    		console.log(subject);
+						    		arrayTest.push(subject);
+						    		console.log(arrayTest);
+						    	});
+						    	subjectButtons = arrayTest.map(function(subject, index){
+									return <Button label={subject} key={index} />;
+								});
+								console.log(subjectButtons);
+							})
+			return arrayTest;
+		}
+	    render() {
+	        return <Chooser subjects={this.state.subjects} updateSubject={this.updateSubject} bookChooser={this.state.subject}/>;
+	    }
+	}
+
+    class Chooser extends React.Component {	
+
+
+/* locate JSON, write forEACH for buttons, PROBLEM IS return is executing before fetch/then is done */
+
+	    render() {
+	    	let updateSubject = this.props.updateSubject;
+	    	let buttonsArray = this.props.subjects.map(function(subject, index){
+							return <Button label={subject} key={index} updateSubject={updateSubject} />;
+						});
+
+	        return (
+	        	<div>
+					<h2>Subjects</h2>
+
+					{buttonsArray}
+
+					<Button updateSubject={this.props.updateSubject} label="Science" /> 
+					<Button label="Fiction" />     		
+	        		{this.props.bookChooser ? <BookChooser /> : null}
+	        	</div>
+	        );
+	    }
+	}
+
+    class Button extends React.Component {	
+	    updateNOTINUSEState() {
+	    	console.log('yo');
+	    	this.setState({subject: false});
+		}
+	    render() {
+	        return <span onClick={() => this.props.updateSubject(this.props.label)}>{this.props.label}</span>;
+	    }
+	}
+
+    class BookChooser extends React.Component {	
+	    render() {
+	        return <h1>Hello yo</h1>;
+	    }
+	}
+
+   	ReactDOM.render(
+   	    <App />,  
+   	    document.getElementById("root")
+   	);
+
+    
+    </script>
+</body>
+</html>
