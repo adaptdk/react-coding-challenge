@@ -18,10 +18,12 @@
 	    constructor(){
 	        super();
 	        this.state = {
+	            subjects: ["Fiction", "Science"],
 	            subject: false,
-	            subjects: ["Fiction", "Science"]
+	            books: [{title: "book1"}, {title: "book2"}]
 	        };
 	        this.updateSubject = this.updateSubject.bind(this);
+	        this.updateBook = this.updateBook.bind(this);
 	    }
 	    updateSubject(subject) {
 		    fetch('subjects')
@@ -33,68 +35,70 @@
 			        })
 	        	);
 	    }
-	    fetchSubjects() {
-	    	/* NOT IN USE */
-			let arrayTest = [];
-				    	let subjectButtons = [];
-						fetch('subjects')
-							.then((results) => results.json())
-							.then((data) => {
-						    	data.forEach(function(subject){
-						    		console.log(subject);
-						    		arrayTest.push(subject);
-						    		console.log(arrayTest);
-						    	});
-						    	subjectButtons = arrayTest.map(function(subject, index){
-									return <Button label={subject} key={index} />;
-								});
-								console.log(subjectButtons);
-							})
-			return arrayTest;
-		}
+	    updateBook(book) {
+		    fetch('books')
+			    .then((results) => results.json())
+		    	.then((data) =>
+			        this.setState({
+			        	book: book,
+			        	books: data
+			        })
+	        	);
+	    }
 	    render() {
-	        return <Chooser subjects={this.state.subjects} updateSubject={this.updateSubject} bookChooser={this.state.subject}/>;
+	        return <Chooser subjects={this.state.subjects} updateSubject={this.updateSubject} subject={this.state.subject} updateBook={this.updateBook} books={this.state.books} />;
 	    }
 	}
 
     class Chooser extends React.Component {	
 
-
-/* locate JSON, write forEACH for buttons, PROBLEM IS return is executing before fetch/then is done */
-
 	    render() {
-	    	let updateSubject = this.props.updateSubject;
-	    	let buttonsArray = this.props.subjects.map(function(subject, index){
-							return <Button label={subject} key={index} updateSubject={updateSubject} />;
-						});
-
 	        return (
 	        	<div>
-					<h2>Subjects</h2>
-
-					{buttonsArray}
-
-					<Button updateSubject={this.props.updateSubject} label="Science" /> 
-					<Button label="Fiction" />     		
-	        		{this.props.bookChooser ? <BookChooser /> : null}
+					{<SubjectChooser subjects={this.props.subjects} updateSubject={this.props.updateSubject} subject={this.props.subject}/>}	
+	        		{this.props.subject ? <BookChooser updateBook={this.props.updateBook} books={this.props.books} /> : null}
 	        	</div>
 	        );
 	    }
 	}
 
-    class Button extends React.Component {	
-	    updateNOTINUSEState() {
-	    	console.log('yo');
-	    	this.setState({subject: false});
-		}
+    class SubjectChooser extends React.Component {	
+
 	    render() {
-	        return <span onClick={() => this.props.updateSubject(this.props.label)}>{this.props.label}</span>;
+	    	let updateSubject = this.props.updateSubject;
+	    	let buttonsArray = this.props.subjects.map(function(subject, index){
+				return <Button label={subject} key={index} updateFn={updateSubject} />;
+			});
+
+	        return (
+	        	<div>
+					<h2>Subjects</h2>
+					{buttonsArray} 	
+	        	</div>
+	        );
 	    }
 	}
 
     class BookChooser extends React.Component {	
 	    render() {
-	        return <h1>Hello yo</h1>;
+
+	    	let updateBook = this.props.updateBook;
+	    	let buttons2Array = this.props.books.map(function(book, index){
+				return <Button label={book.title} key={index} updateFn={updateBook} />;
+			});
+
+	        return (
+	        	<div> 
+	        		<h2>Books</h2>
+	        		{buttons2Array}
+	        	</div>
+	        )
+	    }
+	}
+
+    class Button extends React.Component {	
+	    render() {
+	        return <span onClick={() => this.props.updateFn(this.props.label)}>{this.props.label}</span>;
 	    }
 	}
 
