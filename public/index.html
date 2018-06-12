@@ -3,7 +3,6 @@
 <script src="https://unpkg.com/react@16/umd/react.development.js"> </script><script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
 </script>
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-<!-- <script type="text/javascript" src="../api.json"></script> -->
 </head>
 <body>
 	yo
@@ -20,54 +19,68 @@
 	        this.state = {
 	            subjects: ["Fiction", "Science"],
 	            subject: false,
-	            books: [{title: "book1"}, {title: "book2"}]
+	            books: [],
+	            book: false
 	        };
-	        this.updateSubject = this.updateSubject.bind(this);
-	        this.updateBook = this.updateBook.bind(this);
+	        this.selectSubject = this.selectSubject.bind(this);
+	        this.selectBook = this.selectBook.bind(this);
+	        this.updateBookInfo = this.updateBookInfo.bind(this);
 	    }
-	    updateSubject(subject) {
-		    fetch('subjects')
+	    selectSubject(subject) {
+		    fetch('books?subjects_like=' + subject)
 			    .then((results) => results.json())
 		    	.then((data) =>
 			        this.setState({
 			            subject: subject,
-			            subjects: data
+			            books: data,
+			            book: false
 			        })
 	        	);
 	    }
-	    updateBook(book) {
-		    fetch('books')
+	    selectBook(book) {
+	    	/* above receives title; should use id but label of button determines value due to button component */
+
+		    fetch('books?title_like=' + book)
 			    .then((results) => results.json())
-		    	.then((data) =>
+		    	.then((book) =>
 			        this.setState({
-			        	book: book,
-			        	books: data
+			        	book: book
+			        })
+	        	);
+	    }
+	    updateBookInfo(book) {
+	    	/* SEND UPDATE TO API, NOT IN USE YET */
+
+		    fetch('books?title_like=' + book)
+			    .then((results) => results.json())
+		    	.then((book) =>
+			        this.setState({
+			        	book: book
 			        })
 	        	);
 	    }
 	    render() {
-	        return <Chooser subjects={this.state.subjects} updateSubject={this.updateSubject} subject={this.state.subject} updateBook={this.updateBook} books={this.state.books} />;
+	        return <Chooser selectSubject={this.selectSubject} subjects={this.state.subjects} subject={this.state.subject} selectBook={this.selectBook} books={this.state.books} book={this.state.book} updateBookInfo={this.props.updateBookInfo} />;
 	    }
 	}
 
     class Chooser extends React.Component {	
-
 	    render() {
 	        return (
 	        	<div>
-					{<SubjectChooser subjects={this.props.subjects} updateSubject={this.props.updateSubject} subject={this.props.subject}/>}	
-	        		{this.props.subject ? <BookChooser updateBook={this.props.updateBook} books={this.props.books} /> : null}
+					{<SubjectChooser subjects={this.props.subjects} selectSubject={this.props.selectSubject} subject={this.props.subject}/>}
+	        		{this.props.subject ? <BookChooser selectBook={this.props.selectBook} books={this.props.books} /> : null}
+	        		{this.props.book ? <BookInfoEditer updateBookInfo={this.props.updateBookInfo} book={this.props.book} /> : null}
 	        	</div>
 	        );
 	    }
 	}
 
     class SubjectChooser extends React.Component {	
-
 	    render() {
-	    	let updateSubject = this.props.updateSubject;
+	    	let selectSubject = this.props.selectSubject;
 	    	let buttonsArray = this.props.subjects.map(function(subject, index){
-				return <Button label={subject} key={index} updateFn={updateSubject} />;
+				return <Button label={subject} key={index} updateFn={selectSubject} />;
 			});
 
 	        return (
@@ -81,10 +94,9 @@
 
     class BookChooser extends React.Component {	
 	    render() {
-
-	    	let updateBook = this.props.updateBook;
+	    	let selectBook = this.props.selectBook;
 	    	let buttons2Array = this.props.books.map(function(book, index){
-				return <Button label={book.title} key={index} updateFn={updateBook} />;
+				return <div key={index}><Button label={book.title} bookId={book.id} updateFn={selectBook} /></div>;
 			});
 
 	        return (
@@ -95,6 +107,18 @@
 	        )
 	    }
 	}
+
+    class BookInfoEditer extends React.Component {
+    	render() {
+    		return (
+    			<form>
+    				<input defaultValue="title" />
+    				<input defaultValue="author" />
+    				<Button label="Update Info" updateFn={this.props.updateBookInfo} />
+ 		   		</form>
+ 		   	)
+    	}
+    }
 
     class Button extends React.Component {	
 	    render() {
