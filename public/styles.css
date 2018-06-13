@@ -1,0 +1,71 @@
+/* styles.css */
+
+body {
+  background-color: #333;
+}
+.script {
+  font-family: monospace;
+  color: magenta;
+  text-align: center;
+  font-size: 40px;
+  position: relative;
+}
+.script span {
+  background-color: blue;
+  padding: 0 0.3em;
+}
+.script:before {
+  content:"";
+  display: block;
+  position: absolute;
+  z-index:-1;
+  top: 50%;
+  width: 100%;
+  border-bottom: 3px solid #fff;
+}
+.plate {
+  margin: 2em;
+}
+.shadow {
+  color: #fff;
+  font-weight: bold;
+  text-shadow:
+    -3px -3px 0 #222,
+    3px -3px 0 #222,
+    -3px 3px 0 #222,
+    3px 3px 0 #222,
+    4px 4px 0 blue,
+    5px 5px 0 blue,
+    6px 6px 0 blue,
+    7px 7px 0 blue;
+  line-height: 0.8em;
+  letter-spacing: 0.1em;
+  transform: scaleY(0.7);
+  -webkit-transform: scaleY(0.7);
+  -moz-transform: scaleY(0.7);
+}
+.menuSubheader {
+  margin: 2em 0 1em;	
+  font-size: 26px;
+}
+.btn {
+  font-family: monospace;
+  font-size: 18px;
+  color: magenta;
+}
+.marginRight {
+  margin-right: 2em;
+}
+
+.inputLabel {
+  margin-right: 0.5em;
+  color: white;
+}
+
+.updateBtn {
+  margin-left: 2em;
+  border: 1px solid white;
+  padding: 0.75em;
+  cursor: pointer;
+  background-color: blue;
+}

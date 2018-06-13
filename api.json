@@ -41,7 +41,7 @@
       "authors": [
         {
           "name": "Thompson, Silvanus P. (Silvanus Phillips)",
-          "birth_year": 1851,
+          "birth_year": "1876",
           "death_year": 1916
         }
       ],
@@ -67,9 +67,9 @@
       "id": 11,
       "authors": [
         {
-          "birth_year": 1832,
-          "death_year": 1898,
-          "name": "Carroll, Lewis"
+          "name": "Carroll, Lewis",
+          "birth_year": "1842",
+          "death_year": 1898
         }
       ],
       "bookshelves": [

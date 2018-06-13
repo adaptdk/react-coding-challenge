@@ -3,10 +3,11 @@
 <script src="https://unpkg.com/react@16/umd/react.development.js"> </script><script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
 </script>
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	yo! Adapt React Coding Challenge
-    <div id="root"></div>
+	<h1 class="script"><span>Adapt React Coding Challenge</span></h1>
+    <div id="root" class="plate"></div>
     <script type="text/babel">
 
     class App extends React.Component {	
@@ -52,7 +53,7 @@
 	        	);
 	    }
 	    keypressBookEdit(event) {
-			this.setState({ [event.target.name] : event.target.value}); 	
+			this.setState({ [event.target.name] : event.target.value});
 		}
 	    saveBookEdit() {
 	    	let book = {
@@ -99,12 +100,12 @@
 	    render() {
 	    	let selectSubject = this.props.selectSubject;
 	    	let buttonsArray = this.props.subjects.map(function(subject, index){
-				return <Button label={subject} key={index} updateFn={selectSubject} updateFnArg={subject} />;
+				return <Button label={subject} className={'marginRight'} key={index} updateFn={selectSubject} updateFnArg={subject} />;
 			});
 
 	        return (
 	        	<div>
-					<h2>Subjects</h2>
+					<h3 className='menuSubheader shadow'>Subjects</h3>
 					{buttonsArray}
 	        	</div>
 	        );
@@ -115,12 +116,12 @@
 	    render() {
 	    	let selectBook = this.props.selectBook;
 	    	let buttons2Array = this.props.books.map(function(book, index){
-				return <div key={index}><Button label={book.title} updateFn={selectBook} updateFnArg={book.id} /></div>;
+				return <div key={index}><Button label={'- '+ book.title} updateFn={selectBook} updateFnArg={book.id} /></div>;
 			});
 
 	        return (
 	        	<div> 
-	        		<h2>Books</h2>
+	        		<h3 className='menuSubheader shadow'>Books</h3>
 	        		{buttons2Array}
 	        	</div>
 	        )
@@ -131,12 +132,12 @@
     	render() {
     		return (
     			<form>
-    				<h2>Book Info</h2>
-    				<InputField name="bookEditerTitle" value={this.props.bookEditerTitle} onChange={this.props.keypressBookEdit} />
-    				<InputField name="bookEditerAuthor" value={this.props.bookEditerAuthor} onChange={this.props.keypressBookEdit} />
-    				<InputField name="bookEditerBirthYear" value={this.props.bookEditerBirthYear} onChange={this.props.keypressBookEdit} />
-    				<InputField name="bookEditerDeathYear" value={this.props.bookEditerDeathYear} onChange={this.props.keypressBookEdit} />
-    				<Button label="Update Info" updateFn={this.props.saveBookEdit} />
+    				<h3 className='menuSubheader shadow'>Book Info</h3>
+    				<label className='inputLabel'>Title</label><InputField name="bookEditerTitle" value={this.props.bookEditerTitle} onChange={this.props.keypressBookEdit} />
+    				<label className='inputLabel'>Author</label><InputField name="bookEditerAuthor" value={this.props.bookEditerAuthor} onChange={this.props.keypressBookEdit} />
+    				<label className='inputLabel'>Author's Birth Year</label><InputField name="bookEditerBirthYear" value={this.props.bookEditerBirthYear} onChange={this.props.keypressBookEdit} />
+    				<label className='inputLabel'>Author's Death Year</label><InputField name="bookEditerDeathYear" value={this.props.bookEditerDeathYear} onChange={this.props.keypressBookEdit} />
+    				<Button label="Update Info" className={'updateBtn'} updateFn={this.props.saveBookEdit} />
  		   		</form>
  		   	)
     	}
@@ -144,13 +145,13 @@
 
     class Button extends React.Component {	
 	    render() {
-	        return <span onClick={() => this.props.updateFn(this.props.updateFnArg)}>{this.props.label}</span>;
+	        return <span className={this.props.className + ' btn'} onClick={() => this.props.updateFn(this.props.updateFnArg)}>{this.props.label}</span>;
 	    }
 	}
 
     class InputField extends React.Component {	
 	    render() {
-	        return <input value={this.props.value} name={this.props.name} onChange={this.props.onChange} />
+	        return <input value={this.props.value} name={this.props.name} className={'marginRight'} onChange={this.props.onChange} />
 	    }
 	}
 
