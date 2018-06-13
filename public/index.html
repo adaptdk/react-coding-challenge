@@ -5,13 +5,9 @@
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 </head>
 <body>
-	yo
+	yo! Adapt React Coding Challenge
     <div id="root"></div>
     <script type="text/babel">
-    
-    /* 
-    ADD REACT CODE HERE 
-    */
 
     class App extends React.Component {	
 	    constructor(){
@@ -43,15 +39,15 @@
 	        	);
 	    }
 	    selectBook(bookId) {
-		    fetch('books?id_like=' + bookId)
+		    fetch('books/' + bookId)
 			    .then((results) => results.json())
 		    	.then((book) =>
 			        this.setState({
-			        	book: book[0],
-			        	bookEditerTitle: book[0].title,
-			        	bookEditerAuthor: book[0].authors[0].name,
-			        	bookEditerBirthYear: book[0].authors[0].birth_year,
-			        	bookEditerDeathYear: book[0].authors[0].death_year
+			        	book: book,
+			        	bookEditerTitle: book.title,
+			        	bookEditerAuthor: book.authors[0].name,
+			        	bookEditerBirthYear: book.authors[0].birth_year,
+			        	bookEditerDeathYear: book.authors[0].death_year
 			        })
 	        	);
 	    }
@@ -67,19 +63,19 @@
 	    			death_year: this.state.bookEditerDeathYear,
 	    		}]
 	    	};
-	    	/* SEND UPDATE TO API, NOT IN USE YET. See last tab for PUT vs. PATCH */
 
 		    fetch('books/' + this.state.book.id, {
-					    body: JSON.stringify(book), // must match 'Content-Type' header
-					    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-					    credentials: 'same-origin', // include, same-origin, *omit
+					    body: JSON.stringify(book),
+					    cache: 'no-cache',
+					    credentials: 'same-origin',
 					    headers: {
 					      'content-type': 'application/json'
 					    },
-					    method: 'PATCH', // *GET, POST, PUT, DELETE, etc.
+					    method: 'PATCH'
 			})
 			.then(response => response.json())
-			.then(data => console.log(data)) // JSON from `response.json()` call
+			.then(data => console.log(data))
+			.then(alert('Info for ' + this.state.book.title + ' was updated.'))
   			.catch(error => console.error(error))
 	    }
 	    render() {
@@ -132,30 +128,6 @@
 	}
 
     class BookInfoEditer extends React.Component {
-    					/*
-						  constructor(props) {
-						    super(props);
-						    this.state = {value: this.props.book.title};
-						    this.handleChange = this.handleChange.bind(this);
-						    this.handleSubmit = this.handleSubmit.bind(this);
-						  }
-
-						  handleChange(event) {
-						    this.setState({value: event.target.value});
-						  }
-
-						handleSubmit(event) {
-						    alert('A name was submitted: ' + this.state.value);
-						    event.preventDefault();
-						    this.props.saveBookEdit({book: "BLALAAAAAAAAA"})
-						  }
-						  <form onSubmit={this.handleSubmit}>
-						  <input type="submit" value="Submit" />
-
-						  <label>Name:</label><input type="text" value={this.state.value} onChange={this.handleChange} />
-						*/
-
-
     	render() {
     		return (
     			<form>
@@ -164,7 +136,7 @@
     				<InputField name="bookEditerAuthor" value={this.props.bookEditerAuthor} onChange={this.props.keypressBookEdit} />
     				<InputField name="bookEditerBirthYear" value={this.props.bookEditerBirthYear} onChange={this.props.keypressBookEdit} />
     				<InputField name="bookEditerDeathYear" value={this.props.bookEditerDeathYear} onChange={this.props.keypressBookEdit} />
-    				<Button label="Update Info" updateFn={this.props.saveBookEdit} updateFnArg={{book: "YAALLLLL"}} />
+    				<Button label="Update Info" updateFn={this.props.saveBookEdit} />
  		   		</form>
  		   	)
     	}

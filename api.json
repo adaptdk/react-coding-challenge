@@ -8,9 +8,9 @@
       "id": 1342,
       "authors": [
         {
+          "name": "Austen, Jane",
           "birth_year": 1775,
-          "death_year": 1817,
-          "name": "Austen, Jane"
+          "death_year": "1871"
         }
       ],
       "bookshelves": [
