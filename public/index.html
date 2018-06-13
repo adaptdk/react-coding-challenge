@@ -58,16 +58,31 @@
 	    keypressBookEdit(event) {
 			this.setState({ [event.target.name] : event.target.value}); 	
 		}
-	    saveBookEdit(book) {
+	    saveBookEdit() {
+	    	let book = {
+	    		title: this.state.bookEditerTitle,
+	    		author: this.state.bookEditerAuthor,
+	    		bY: this.state.bookEditerBirthYear,
+	    		dY: this.state.bookEditerDeathYear,
+	    	};
 	    	/* SEND UPDATE TO API, NOT IN USE YET. See last tab for PUT vs. PATCH */
 
-		    fetch('books?id_like=' + book.id)
-			    .then((results) => results.json())
-		    	.then((book) =>
-			        this.setState({
-			        	book: book
-			        })
-	        	);
+		    fetch('books', {
+					    body: JSON.stringify(book), // must match 'Content-Type' header
+					    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+					    credentials: 'same-origin', // include, same-origin, *omit
+					    headers: {
+					      'user-agent': 'Mozilla/4.0 MDN Example',
+					      'content-type': 'application/json'
+					    },
+					    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+					    mode: 'cors', // no-cors, cors, *same-origin
+					    redirect: 'follow', // manual, *follow, error
+					    referrer: 'no-referrer', // *client, no-referrer
+			})
+			.then(response => response.json())
+			.then(data => console.log(data)) // JSON from `response.json()` call
+  			.catch(error => console.error(error))
 	    }
 	    render() {
 	        return <Chooser selectSubject={this.selectSubject} subjects={this.state.subjects} subject={this.state.subject} selectBook={this.selectBook} books={this.state.books} book={this.state.book} saveBookEdit={this.saveBookEdit} bookEditerTitle={this.state.bookEditerTitle} bookEditerAuthor={this.state.bookEditerAuthor} bookEditerBirthYear={this.state.bookEditerBirthYear} bookEditerDeathYear={this.state.bookEditerDeathYear} keypressBookEdit={this.keypressBookEdit} />;
@@ -131,25 +146,27 @@
 						    this.setState({value: event.target.value});
 						  }
 
-						  handleSubmit(event) {
+						handleSubmit(event) {
 						    alert('A name was submitted: ' + this.state.value);
 						    event.preventDefault();
+						    this.props.saveBookEdit({book: "BLALAAAAAAAAA"})
 						  }
-
+						  <form onSubmit={this.handleSubmit}>
+						  <input type="submit" value="Submit" />
 
 						  <label>Name:</label><input type="text" value={this.state.value} onChange={this.handleChange} />
 						*/
+
+
     	render() {
     		return (
-    			<form onSubmit={this.handleSubmit}>
+    			<form>
     				<h2>Book Info</h2>
     				<InputField name="bookEditerTitle" value={this.props.bookEditerTitle} onChange={this.props.keypressBookEdit} />
     				<InputField name="bookEditerAuthor" value={this.props.bookEditerAuthor} onChange={this.props.keypressBookEdit} />
     				<InputField name="bookEditerBirthYear" value={this.props.bookEditerBirthYear} onChange={this.props.keypressBookEdit} />
     				<InputField name="bookEditerDeathYear" value={this.props.bookEditerDeathYear} onChange={this.props.keypressBookEdit} />
-    				
-    				<Button label="Update Info" updateFn={this.props.saveBookEdit} updateFnArg={null} />
-    				<input type="submit" value="Submit" />
+    				<Button label="Update Info" updateFn={this.props.saveBookEdit} updateFnArg={{book: "YAALLLLL"}} />
  		   		</form>
  		   	)
     	}
@@ -162,9 +179,6 @@
 	}
 
     class InputField extends React.Component {	
-    	/* using value is uneditable but re-renders fine */
-    	/* getting warning for using value sans onChange handler but defaultValue doesn't update field upon switching books */
-	    
 	    render() {
 	        return <input value={this.props.value} name={this.props.name} onChange={this.props.onChange} />
 	    }
