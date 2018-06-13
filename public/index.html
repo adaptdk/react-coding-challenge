@@ -20,11 +20,16 @@
 	            subjects: ["Fiction", "Science"],
 	            subject: false,
 	            books: [],
-	            book: false
+	            book: false,
+	            bookEditerTitle: false,
+	            bookEditerAuthor: false,
+	            bookEditerBirthYear: false,
+	            bookEditerDeathYear: false
 	        };
 	        this.selectSubject = this.selectSubject.bind(this);
 	        this.selectBook = this.selectBook.bind(this);
-	        this.updateBookInfo = this.updateBookInfo.bind(this);
+	        this.keypressBookEdit = this.keypressBookEdit.bind(this);
+	        this.saveBookEdit = this.saveBookEdit.bind(this);
 	    }
 	    selectSubject(subject) {
 		    fetch('books?subjects_like=' + subject)
@@ -37,21 +42,26 @@
 			        })
 	        	);
 	    }
-	    selectBook(book) {
-	    	/* above receives title; should use id but label of button determines value due to button component */
-
-		    fetch('books?title_like=' + book)
+	    selectBook(bookId) {
+		    fetch('books?id_like=' + bookId)
 			    .then((results) => results.json())
 		    	.then((book) =>
 			        this.setState({
-			        	book: book
+			        	book: book[0],
+			        	bookEditerTitle: book[0].title,
+			        	bookEditerAuthor: book[0].authors[0].name,
+			        	bookEditerBirthYear: book[0].authors[0].birth_year,
+			        	bookEditerDeathYear: book[0].authors[0].death_year
 			        })
 	        	);
 	    }
-	    updateBookInfo(book) {
-	    	/* SEND UPDATE TO API, NOT IN USE YET */
+	    keypressBookEdit(event) {
+			this.setState({ [event.target.name] : event.target.value}); 	
+		}
+	    saveBookEdit(book) {
+	    	/* SEND UPDATE TO API, NOT IN USE YET. See last tab for PUT vs. PATCH */
 
-		    fetch('books?title_like=' + book)
+		    fetch('books?id_like=' + book.id)
 			    .then((results) => results.json())
 		    	.then((book) =>
 			        this.setState({
@@ -60,7 +70,7 @@
 	        	);
 	    }
 	    render() {
-	        return <Chooser selectSubject={this.selectSubject} subjects={this.state.subjects} subject={this.state.subject} selectBook={this.selectBook} books={this.state.books} book={this.state.book} updateBookInfo={this.props.updateBookInfo} />;
+	        return <Chooser selectSubject={this.selectSubject} subjects={this.state.subjects} subject={this.state.subject} selectBook={this.selectBook} books={this.state.books} book={this.state.book} saveBookEdit={this.saveBookEdit} bookEditerTitle={this.state.bookEditerTitle} bookEditerAuthor={this.state.bookEditerAuthor} bookEditerBirthYear={this.state.bookEditerBirthYear} bookEditerDeathYear={this.state.bookEditerDeathYear} keypressBookEdit={this.keypressBookEdit} />;
 	    }
 	}
 
@@ -68,9 +78,9 @@
 	    render() {
 	        return (
 	        	<div>
-					{<SubjectChooser subjects={this.props.subjects} selectSubject={this.props.selectSubject} subject={this.props.subject}/>}
+					<SubjectChooser subjects={this.props.subjects} selectSubject={this.props.selectSubject} subject={this.props.subject}/>
 	        		{this.props.subject ? <BookChooser selectBook={this.props.selectBook} books={this.props.books} /> : null}
-	        		{this.props.book ? <BookInfoEditer updateBookInfo={this.props.updateBookInfo} book={this.props.book} /> : null}
+	        		{this.props.book ? <BookInfoEditer saveBookEdit={this.props.saveBookEdit} book={this.props.book} bookEditerTitle={this.props.bookEditerTitle} bookEditerAuthor={this.props.bookEditerAuthor} bookEditerBirthYear={this.props.bookEditerBirthYear} bookEditerDeathYear={this.props.bookEditerDeathYear} keypressBookEdit={this.props.keypressBookEdit} /> : null}
 	        	</div>
 	        );
 	    }
@@ -80,13 +90,13 @@
 	    render() {
 	    	let selectSubject = this.props.selectSubject;
 	    	let buttonsArray = this.props.subjects.map(function(subject, index){
-				return <Button label={subject} key={index} updateFn={selectSubject} />;
+				return <Button label={subject} key={index} updateFn={selectSubject} updateFnArg={subject} />;
 			});
 
 	        return (
 	        	<div>
 					<h2>Subjects</h2>
-					{buttonsArray} 	
+					{buttonsArray}
 	        	</div>
 	        );
 	    }
@@ -96,7 +106,7 @@
 	    render() {
 	    	let selectBook = this.props.selectBook;
 	    	let buttons2Array = this.props.books.map(function(book, index){
-				return <div key={index}><Button label={book.title} bookId={book.id} updateFn={selectBook} /></div>;
+				return <div key={index}><Button label={book.title} updateFn={selectBook} updateFnArg={book.id} /></div>;
 			});
 
 	        return (
@@ -109,12 +119,37 @@
 	}
 
     class BookInfoEditer extends React.Component {
+    					/*
+						  constructor(props) {
+						    super(props);
+						    this.state = {value: this.props.book.title};
+						    this.handleChange = this.handleChange.bind(this);
+						    this.handleSubmit = this.handleSubmit.bind(this);
+						  }
+
+						  handleChange(event) {
+						    this.setState({value: event.target.value});
+						  }
+
+						  handleSubmit(event) {
+						    alert('A name was submitted: ' + this.state.value);
+						    event.preventDefault();
+						  }
+
+
+						  <label>Name:</label><input type="text" value={this.state.value} onChange={this.handleChange} />
+						*/
     	render() {
     		return (
-    			<form>
-    				<input defaultValue="title" />
-    				<input defaultValue="author" />
-    				<Button label="Update Info" updateFn={this.props.updateBookInfo} />
+    			<form onSubmit={this.handleSubmit}>
+    				<h2>Book Info</h2>
+    				<InputField name="bookEditerTitle" value={this.props.bookEditerTitle} onChange={this.props.keypressBookEdit} />
+    				<InputField name="bookEditerAuthor" value={this.props.bookEditerAuthor} onChange={this.props.keypressBookEdit} />
+    				<InputField name="bookEditerBirthYear" value={this.props.bookEditerBirthYear} onChange={this.props.keypressBookEdit} />
+    				<InputField name="bookEditerDeathYear" value={this.props.bookEditerDeathYear} onChange={this.props.keypressBookEdit} />
+    				
+    				<Button label="Update Info" updateFn={this.props.saveBookEdit} updateFnArg={null} />
+    				<input type="submit" value="Submit" />
  		   		</form>
  		   	)
     	}
@@ -122,7 +157,16 @@
 
     class Button extends React.Component {	
 	    render() {
-	        return <span onClick={() => this.props.updateFn(this.props.label)}>{this.props.label}</span>;
+	        return <span onClick={() => this.props.updateFn(this.props.updateFnArg)}>{this.props.label}</span>;
+	    }
+	}
+
+    class InputField extends React.Component {	
+    	/* using value is uneditable but re-renders fine */
+    	/* getting warning for using value sans onChange handler but defaultValue doesn't update field upon switching books */
+	    
+	    render() {
+	        return <input value={this.props.value} name={this.props.name} onChange={this.props.onChange} />
 	    }
 	}
 
