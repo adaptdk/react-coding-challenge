@@ -40,9 +40,9 @@
       "id": 33283,
       "authors": [
         {
+          "name": "Thompson, Silvanus P. (Silvanus Phillips)",
           "birth_year": 1851,
-          "death_year": 1916,
-          "name": "Thompson, Silvanus P. (Silvanus Phillips)"
+          "death_year": 1916
         }
       ],
       "bookshelves": [
@@ -61,7 +61,7 @@
       "subjects": [
         "Fiction"
       ],
-      "title": "Calculus Made Easy: Being a very-simplest introduction to those beautiful methods which are generally called by the terrifying names of the Differential Calculus and the Integral Calculus"
+      "title": "Geometry Made Easy: Being a very-simplest introduction to those beautiful methods which are generally called by the terrifying names of the Differential Calculus and the Integral Calculus"
     },
     {
       "id": 11,
@@ -100,9 +100,9 @@
       "id": 74,
       "authors": [
         {
+          "name": "Mario",
           "birth_year": 1835,
-          "death_year": 1910,
-          "name": "Twain, Mark"
+          "death_year": 1910
         }
       ],
       "bookshelves": [
@@ -138,6 +138,28 @@
       "bY": "69",
       "dY": "96",
       "id": 33285
+    },
+    {
+      "title": "Alice's Adventures in Wonderland",
+      "authors": [
+        {
+          "name": "HOOOOPPLAAA",
+          "birth_year": 1832,
+          "death_year": 1898
+        }
+      ],
+      "id": 33286
+    },
+    {
+      "title": "The Adventures of Tom Sawyer",
+      "authors": [
+        {
+          "name": "wefhfr",
+          "birth_year": 1835,
+          "death_year": 1910
+        }
+      ],
+      "id": 33287
     }
   ]
 }

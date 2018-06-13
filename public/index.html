@@ -61,24 +61,22 @@
 	    saveBookEdit() {
 	    	let book = {
 	    		title: this.state.bookEditerTitle,
-	    		author: this.state.bookEditerAuthor,
-	    		bY: this.state.bookEditerBirthYear,
-	    		dY: this.state.bookEditerDeathYear,
+	    		authors: [{
+	    			name: this.state.bookEditerAuthor,
+	    			birth_year: this.state.bookEditerBirthYear,
+	    			death_year: this.state.bookEditerDeathYear,
+	    		}]
 	    	};
 	    	/* SEND UPDATE TO API, NOT IN USE YET. See last tab for PUT vs. PATCH */
 
-		    fetch('books', {
+		    fetch('books/' + this.state.book.id, {
 					    body: JSON.stringify(book), // must match 'Content-Type' header
 					    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
 					    credentials: 'same-origin', // include, same-origin, *omit
 					    headers: {
-					      'user-agent': 'Mozilla/4.0 MDN Example',
 					      'content-type': 'application/json'
 					    },
-					    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-					    mode: 'cors', // no-cors, cors, *same-origin
-					    redirect: 'follow', // manual, *follow, error
-					    referrer: 'no-referrer', // *client, no-referrer
+					    method: 'PATCH', // *GET, POST, PUT, DELETE, etc.
 			})
 			.then(response => response.json())
 			.then(data => console.log(data)) // JSON from `response.json()` call
