@@ -10,7 +10,13 @@
     <div id="root" class="plate"></div>
     <script type="text/babel">
 
-    class App extends React.Component {	
+	/* SWAP FOR LOCAL JSON FILES
+	fetch('books?subjects_like=' + subject) 
+	fetch('books/' + bookId)
+	fetch('books/' + this.state.book.id, {
+	*/
+
+    class App extends React.Component {
 	    constructor(){
 	        super();
 	        this.state = {
@@ -28,8 +34,9 @@
 	        this.keypressBookEdit = this.keypressBookEdit.bind(this);
 	        this.saveBookEdit = this.saveBookEdit.bind(this);
 	    }
+
 	    selectSubject(subject) {
-		    fetch('books?subjects_like=' + subject)
+	    	fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books?subjects_like=' + subject)
 			    .then((results) => results.json())
 		    	.then((data) =>
 			        this.setState({
@@ -40,7 +47,7 @@
 	        	);
 	    }
 	    selectBook(bookId) {
-		    fetch('books/' + bookId)
+		    fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books/' + bookId)
 			    .then((results) => results.json())
 		    	.then((book) =>
 			        this.setState({
@@ -65,7 +72,7 @@
 	    		}]
 	    	};
 
-		    fetch('books/' + this.state.book.id, {
+		    fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books/' + this.state.book.id, {
 					    body: JSON.stringify(book),
 					    cache: 'no-cache',
 					    credentials: 'same-origin',
