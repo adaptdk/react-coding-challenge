@@ -61,14 +61,14 @@
       "subjects": [
         "Fiction"
       ],
-      "title": "Geometry Made Easy: Being a very-simplest introduction to those beautiful methods which are generally called by the terrifying names of the Differential Calculus and the Integral Calculus"
+      "title": "Calculus Made Easy: Being a very-simplest introduction to those beautiful methods which are generally called by the terrifying names of the Differential Calculus and the Integral Calculus"
     },
     {
       "id": 11,
       "authors": [
         {
           "name": "Carroll, Lewis",
-          "birth_year": "1842",
+          "birth_year": "1856",
           "death_year": 1898
         }
       ],
@@ -100,7 +100,7 @@
       "id": 74,
       "authors": [
         {
-          "name": "Mario",
+          "name": "Sir Huck Finn",
           "birth_year": 1835,
           "death_year": 1910
         }
@@ -127,39 +127,6 @@
         "Science"
       ],
       "title": "The Adventures of Tom Sawyer"
-    },
-    {
-      "book": "YAALLLLL",
-      "id": 33284
-    },
-    {
-      "title": "peep",
-      "author": "ash",
-      "bY": "69",
-      "dY": "96",
-      "id": 33285
-    },
-    {
-      "title": "Alice's Adventures in Wonderland",
-      "authors": [
-        {
-          "name": "HOOOOPPLAAA",
-          "birth_year": 1832,
-          "death_year": 1898
-        }
-      ],
-      "id": 33286
-    },
-    {
-      "title": "The Adventures of Tom Sawyer",
-      "authors": [
-        {
-          "name": "wefhfr",
-          "birth_year": 1835,
-          "death_year": 1910
-        }
-      ],
-      "id": 33287
     }
   ]
 }

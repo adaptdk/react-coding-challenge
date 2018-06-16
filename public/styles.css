@@ -51,6 +51,7 @@ body {
 .btn {
   font-family: monospace;
   font-size: 18px;
+  cursor: pointer;
   color: magenta;
 }
 .marginRight {
@@ -66,6 +67,5 @@ body {
   margin-left: 2em;
   border: 1px solid white;
   padding: 0.75em;
-  cursor: pointer;
   background-color: blue;
 }
