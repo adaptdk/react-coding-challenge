@@ -10,13 +10,13 @@
     <div id="root" class="plate"></div>
     <script type="text/babel">
 
-	/* SWAP FOR LOCAL API.JSON FILES, SEE PACKAGE.JSON > SCRIPTS > START
+	/* SWAP FOR LOCAL API.JSON FILES...SEE PACKAGE.JSON > SCRIPTS > START. AS A REMINDER, ORIGINALLY EXPECTED DB.JSON.
 	fetch('books?subjects_like=' + subject) 
 	fetch('books/' + bookId)
 	fetch('books/' + this.state.book.id, {
 	*/
 
-	/* WON'T WORK LIVE BUT JUST A REMINDER BEFORE PACKAGE.JSON > SCRIPTS > START ORIGINALLY EXPECTED DB.JSON
+	/* WON'T PERSIST LIVE
 	fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books?subjects_like=' + subject)
 	fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books/' + bookId)
 	fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books/' + this.state.book.id, {
@@ -42,7 +42,7 @@
 	    }
 
 	    selectSubject(subject) {
-			fetch('books?subjects_like=' + subject) 
+			fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books?subjects_like=' + subject)
 			    .then((results) => results.json())
 		    	.then((data) =>
 			        this.setState({
@@ -53,7 +53,7 @@
 	        	);
 	    }
 	    selectBook(bookId) {
-			fetch('books/' + bookId)
+			fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books/' + bookId)
 			    .then((results) => results.json())
 		    	.then((book) =>
 			        this.setState({
@@ -78,7 +78,7 @@
 	    		}]
 	    	};
 
-			fetch('books/' + this.state.book.id, {
+			fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books/' + this.state.book.id, {
 			    body: JSON.stringify(book),
 			    cache: 'no-cache',
 			    credentials: 'same-origin',
