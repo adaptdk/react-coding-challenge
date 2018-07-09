@@ -1,0 +1,179 @@
+<html>
+<head>
+<script src="https://unpkg.com/react@16/umd/react.development.js"> </script><script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+</script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<h1 class="script"><span>Adapt React Coding Challenge</span></h1>
+    <div id="root" class="plate"></div>
+    <script type="text/babel">
+
+	/* SWAP FOR LOCAL API.JSON FILES...SEE PACKAGE.JSON > SCRIPTS > START. AS A REMINDER, ORIGINALLY EXPECTED DB.JSON.
+	fetch('books?subjects_like=' + subject) 
+	fetch('books/' + bookId)
+	fetch('books/' + this.state.book.id, {
+	*/
+
+	/* WON'T PERSIST LIVE
+	fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books?subjects_like=' + subject)
+	fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books/' + bookId)
+	fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books/' + this.state.book.id, {
+	*/
+
+    class App extends React.Component {
+	    constructor(){
+	        super();
+	        this.state = {
+	            subjects: ["Fiction", "Science"],
+	            subject: false,
+	            books: [],
+	            book: false,
+	            bookEditerTitle: false,
+	            bookEditerAuthor: false,
+	            bookEditerBirthYear: false,
+	            bookEditerDeathYear: false
+	        };
+	        this.selectSubject = this.selectSubject.bind(this);
+	        this.selectBook = this.selectBook.bind(this);
+	        this.keypressBookEdit = this.keypressBookEdit.bind(this);
+	        this.saveBookEdit = this.saveBookEdit.bind(this);
+	    }
+
+	    selectSubject(subject) {
+			fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books?subjects_like=' + subject)
+			    .then((results) => results.json())
+		    	.then((data) =>
+			        this.setState({
+			            subject: subject,
+			            books: data,
+			            book: false
+			        })
+	        	);
+	    }
+	    selectBook(bookId) {
+			fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books/' + bookId)
+			    .then((results) => results.json())
+		    	.then((book) =>
+			        this.setState({
+			        	book: book,
+			        	bookEditerTitle: book.title,
+			        	bookEditerAuthor: book.authors[0].name,
+			        	bookEditerBirthYear: book.authors[0].birth_year,
+			        	bookEditerDeathYear: book.authors[0].death_year
+			        })
+	        	);
+	    }
+	    keypressBookEdit(event) {
+			this.setState({ [event.target.name] : event.target.value});
+		}
+	    saveBookEdit() {
+	    	let book = {
+	    		title: this.state.bookEditerTitle,
+	    		authors: [{
+	    			name: this.state.bookEditerAuthor,
+	    			birth_year: this.state.bookEditerBirthYear,
+	    			death_year: this.state.bookEditerDeathYear,
+	    		}]
+	    	};
+
+			fetch('https://my-json-server.typicode.com/plove13x/react-coding-challenge/books/' + this.state.book.id, {
+			    body: JSON.stringify(book),
+			    cache: 'no-cache',
+			    credentials: 'same-origin',
+			    headers: {
+			      'content-type': 'application/json'
+			    },
+			    method: 'PATCH'
+			})
+			.then(response => response.json())
+			.then(data => console.log(data))
+			.then(alert('Info for ' + this.state.book.title + ' was updated.'))
+  			.catch(error => console.error(error))
+	    }
+	    render() {
+	        return <Chooser selectSubject={this.selectSubject} subjects={this.state.subjects} subject={this.state.subject} selectBook={this.selectBook} books={this.state.books} book={this.state.book} saveBookEdit={this.saveBookEdit} bookEditerTitle={this.state.bookEditerTitle} bookEditerAuthor={this.state.bookEditerAuthor} bookEditerBirthYear={this.state.bookEditerBirthYear} bookEditerDeathYear={this.state.bookEditerDeathYear} keypressBookEdit={this.keypressBookEdit} />;
+	    }
+	}
+
+    class Chooser extends React.Component {	
+	    render() {
+	        return (
+	        	<div>
+					<SubjectChooser subjects={this.props.subjects} selectSubject={this.props.selectSubject} subject={this.props.subject}/>
+	        		{this.props.subject ? <BookChooser selectBook={this.props.selectBook} books={this.props.books} /> : null}
+	        		{this.props.book ? <BookInfoEditer saveBookEdit={this.props.saveBookEdit} book={this.props.book} bookEditerTitle={this.props.bookEditerTitle} bookEditerAuthor={this.props.bookEditerAuthor} bookEditerBirthYear={this.props.bookEditerBirthYear} bookEditerDeathYear={this.props.bookEditerDeathYear} keypressBookEdit={this.props.keypressBookEdit} /> : null}
+	        	</div>
+	        );
+	    }
+	}
+
+    class SubjectChooser extends React.Component {	
+	    render() {
+	    	let selectSubject = this.props.selectSubject;
+	    	let buttonsArray = this.props.subjects.map(function(subject, index){
+				return <Button label={subject} className={'marginRight'} key={index} updateFn={selectSubject} updateFnArg={subject} />;
+			});
+
+	        return (
+	        	<div>
+					<h3 className='menuSubheader shadow'>Subjects</h3>
+					{buttonsArray}
+	        	</div>
+	        );
+	    }
+	}
+
+    class BookChooser extends React.Component {	
+	    render() {
+	    	let selectBook = this.props.selectBook;
+	    	let buttons2Array = this.props.books.map(function(book, index){
+				return <div key={index}><Button label={'- '+ book.title} updateFn={selectBook} updateFnArg={book.id} /></div>;
+			});
+
+	        return (
+	        	<div> 
+	        		<h3 className='menuSubheader shadow'>Books</h3>
+	        		{buttons2Array}
+	        	</div>
+	        )
+	    }
+	}
+
+    class BookInfoEditer extends React.Component {
+    	render() {
+    		return (
+    			<form>
+    				<h3 className='menuSubheader shadow'>Book Info</h3>
+    				<label className='inputLabel'>Title</label><InputField name="bookEditerTitle" value={this.props.bookEditerTitle} onChange={this.props.keypressBookEdit} />
+    				<label className='inputLabel'>Author</label><InputField name="bookEditerAuthor" value={this.props.bookEditerAuthor} onChange={this.props.keypressBookEdit} />
+    				<label className='inputLabel'>Author's Birth Year</label><InputField name="bookEditerBirthYear" value={this.props.bookEditerBirthYear} onChange={this.props.keypressBookEdit} />
+    				<label className='inputLabel'>Author's Death Year</label><InputField name="bookEditerDeathYear" value={this.props.bookEditerDeathYear} onChange={this.props.keypressBookEdit} />
+    				<Button label="Update Info" className={'updateBtn'} updateFn={this.props.saveBookEdit} />
+ 		   		</form>
+ 		   	)
+    	}
+    }
+
+    class Button extends React.Component {	
+	    render() {
+	        return <span className={this.props.className + ' btn'} onClick={() => this.props.updateFn(this.props.updateFnArg)}>{this.props.label}</span>;
+	    }
+	}
+
+    class InputField extends React.Component {	
+	    render() {
+	        return <input value={this.props.value} name={this.props.name} className={'marginRight'} onChange={this.props.onChange} />
+	    }
+	}
+
+   	ReactDOM.render(
+   	    <App />,  
+   	    document.getElementById("root")
+   	);
+
+    
+    </script>
+</body>
+</html>
