@@ -53,7 +53,7 @@
 	        	);
 	    }
 	    selectBook(bookId) {
-		    fetch('books/' + bookId)
+			fetch('books/' + bookId)
 			    .then((results) => results.json())
 		    	.then((book) =>
 			        this.setState({
