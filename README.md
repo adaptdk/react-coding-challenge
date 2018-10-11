@@ -1,13 +1,13 @@
-# Adapt React Coding Challenge
+# MOIA React Coding Challenge
 
 Seems like you're trying out for a position at
-[Adapt](https://adapt.dk/en) or you've found this and would like to
-apply.  Fork this repo and go at it ;)
+[MOIA](https://www.moia.io) or you've found this and would like to
+apply. Fork this repo and go at it ;)
 
 Your goal is to set up a React application, where users will be able to
 edit book info (and create new books, if you have enough time to
 implement it). Once you are done with the challenge, please fire up a
-Pull Request and we will get in touch.
+Pull Request and apply online at https://www.moia.io/jobs/.
 
 ## Brief
 
@@ -59,3 +59,7 @@ install` once starting working on the project to install dependencies.
 More info about API usage can be found at the [json-server
 repo](https://github.com/typicode/json-server).
 
+## Credits
+
+This repo was originally forked from the [Adapt](https://adapt.dk/en) repo here - https://github.com/adaptdk/react-coding-challenge 
+All credits are going out to them! Thanks guys!
