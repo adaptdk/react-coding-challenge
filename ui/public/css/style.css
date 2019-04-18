@@ -1,0 +1,47 @@
+html {
+    width: 95%;
+    height: 100%;
+    background-color: #666;
+    color: #eee;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+header h1 {
+    font-size: 2.6rem
+}
+
+.subject-wrapper, .books-wrapper, .book-wrapper h2, .label {
+    font-size: 1.8rem;
+}
+
+.subject {
+    margin: 1.8rem;
+}
+
+.book {
+    margin: 1rem auto;
+    width: 80%;
+    padding: 1.2rem;
+    color: #000;
+    background-color: #fff;
+    border: 0.1rem solid red;
+    border-radius: 1rem;
+}
+
+.input, .textarea {
+    width: 60%;
+    text-align: center;
+}
+
+.input {
+    height: 3.6rem;
+    padding: 0 2rem;
+}
+
+.textarea {
+    height: auto;
+    padding: .6rem 2rem;    
+}
