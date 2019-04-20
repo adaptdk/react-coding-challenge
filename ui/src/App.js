@@ -46,11 +46,8 @@ class App extends React.Component {
     this.setState({ book, error: false });
   };
 
-  //Function created just be able to use 'value' field in inputs
-  //Otherwise, console errors were thrown
   handleTitleChange = e => {
     const newValue = e.target.value;
-
     this.setState(oldState => {
       return { book: { ...oldState.book, title: newValue } };
     });
@@ -62,7 +59,6 @@ class App extends React.Component {
     this.setState(oldState => {
       let newAuthors = [...oldState.book.authors];
       newAuthors[0].name = newValue;
-
       return {
         book: {
           ...oldState.book,
@@ -90,9 +86,7 @@ class App extends React.Component {
 
   handleEdit = e => {
     e.preventDefault();
-
     const { book } = this.state;
-
     const data = {
       title: book.title,
       authors: book.authors,
@@ -160,7 +154,6 @@ class App extends React.Component {
 
   renderBook = () => {
     const { book } = this.state;
-    console.log(book);
     return (
       <div className="book-wrapper">
         <h2>We have the following details about {book.title}</h2>
