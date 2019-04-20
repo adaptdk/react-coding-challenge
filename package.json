@@ -5,7 +5,12 @@
   "scripts": {
     "start": "json-server --port 3010 --watch api.json"
   },
-  "keywords": ["react challenge", "tryouts", "react developer", "hiring"],
+  "keywords": [
+    "react challenge",
+    "tryouts",
+    "react developer",
+    "hiring"
+  ],
   "author": "Adapt A/S",
   "license": "ISC",
   "devDependencies": {

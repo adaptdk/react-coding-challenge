@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import axios from "axios";
 
 class App extends React.Component {
@@ -10,23 +10,23 @@ class App extends React.Component {
   };
 
   subjectURL = "http://localhost:3010/subjects";
-  bookURL = "http://localhost:3010/books?subjects_like=";
+  booksURL = "http://localhost:3010/books?subjects_like=";
+  bookURL = "http://localhost:3010/books/";
 
-  getSubjects = () => {
-    axios
+  getSubjects = async () => {
+    await axios
       .get(this.subjectURL)
       .then(res => {
         this.setState({ subjects: res.data, error: false, book: null });
-        console.log("State", this.state);
       })
       .catch(error => {
         this.setState({ error: error.toString() });
       });
   };
 
-  getBooks = subject => {
-    axios
-      .get(this.bookURL + subject)
+  getBooks = async subject => {
+    await axios
+      .get(this.booksURL + subject)
       .then(res => {
         this.setState({ books: res.data, error: false, book: null });
       })
@@ -46,17 +46,81 @@ class App extends React.Component {
     this.setState({ book, error: false });
   };
 
-  //Function created just be able to use 'value' filed in inputs
+  //Function created just be able to use 'value' field in inputs
   //Otherwise, console errors were thrown
-  handleChange = () => {
-    return
+  handleTitleChange = e => {
+    const newValue = e.target.value;
+
+    this.setState(oldState => {
+      return { book: { ...oldState.book, title: newValue } };
+    });
   };
 
+  handleAuthorChange = e => {
+    const newValue = e.target.value;
+
+    this.setState(oldState => {
+      let newAuthors = [...oldState.book.authors];
+      newAuthors[0].name = newValue;
+
+      return {
+        book: {
+          ...oldState.book,
+          authors: newAuthors
+        }
+      };
+    });
+  };
+
+  handleBookshelfChange = (e, index) => {
+    const newValue = e.target.value;
+
+    this.setState(oldState => {
+      let newBookshelves = [...oldState.book.bookshelves];
+      newBookshelves[index] = newValue;
+
+      return {
+        book: {
+          ...oldState.book,
+          bookshelves: newBookshelves
+        }
+      };
+    });
+  };
+
+  handleEdit = e => {
+    e.preventDefault();
+
+    const { book } = this.state;
+
+    const data = {
+      title: book.title,
+      authors: book.authors,
+      bookshelves: book.bookshelves
+    };
+
+    axios
+      .patch(`${this.bookURL}${book.id}`, data)
+      .then(() => {
+        this.setState(oldState => {
+          const index = oldState.books.findIndex(item => item.id === book.id);
+          const books = [...oldState.books];
+          books[index] = book;
+
+          return { books };
+        })
+      })
+      .catch(error => {
+        this.setState({ error: error.toString() });
+      });
+  }
+
   renderSubjects = () => {
+    const { subjects } = this.state;
     return (
       <div className="subject-wrapper">
         <h2>We have the following subjects:</h2>
-        {this.state.subjects.map(subject => {
+        {subjects.map(subject => {
           return (
             <span
               className="subject"
@@ -108,7 +172,7 @@ class App extends React.Component {
               className="textarea"
               value={`${book.title}`}
               name="title"
-              onChange={this.handleChange}
+              onChange={this.handleTitleChange}
             />
             <br />
           </label>
@@ -120,30 +184,34 @@ class App extends React.Component {
               type="text"
               name="authors"
               value={`${book.authors[0].name}`}
-              onChange={this.handleChange}
+              onChange={this.handleAuthorChange}
             />
             <br />
           </label>
           <label className="label">
             Bookshelves:
             <br />
-            {book.bookshelves.map(item => {
+            {book.bookshelves.map((item, index) => {
               return (
-                <div key={`${item}`}>
+                <div key={index}>
                   <input
                     className="input"
                     type="text"
                     value={`${item}`}
                     name="bookshelves"
-                    onChange={this.handleChange}
+                    onChange={e => this.handleBookshelfChange(e, index)}
                   />
                   <br />
                 </div>
               );
             })}
           </label>
-          <button type="submit">
-            Edit
+          <button
+            type="submit"
+            onClick={this.handleEdit}
+            className="button"
+          >
+            Submit changes
           </button>
         </form>
       </div>
