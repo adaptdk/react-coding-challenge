@@ -1,61 +1,34 @@
 # Adapt React Coding Challenge
 
-Seems like you're trying out for a position at
-[Adapt](https://adapt.dk/en) or you've found this and would like to
-apply.  Fork this repo and go at it ;)
+Three step form to manage and update your book list.
 
-Your goal is to set up a React application, where users will be able to
-edit book info (and create new books, if you have enough time to
-implement it). Once you are done with the challenge, please fire up a
-Pull Request and we will get in touch.
+## What is the solution?
+* Built with a minimal custom setup needed just for this task. No boilerplate.
+* App is divided into functional components. State is managed with native and custom hooks, so it has zero class components.
+* Each user interface or application component has a separate style written with SCSS using BEM methodology. Some global colours, sizes and typography elements were defined to reuse and manage them more simply.
+* No external libraries were used except packages for development.
 
-## Brief
+## What could be improved?
+* App state could be managed with reducers instead of separate hooks, similar how form is being managed.
+* Form itself does not let you edit all the data, but in a case it would, uncontrolled form should be considered with a different data management approach, since it is quite complicated.
+* There are some lint comments across the code, so it could also be fixed. Keys for components should be improved as well.
+* ... and cover components with tests.
 
-I am a user of the app and I want to create a book object and edit
-previously provided info about it, so that my reading list can stay up
-to date. The form should be split into three steps:
+## Final thoughts?
+I wanted to make this task useful for myself, so I've experimented and tried new things a.k.a hooks and effects instead of more classic lifecycle methods. Enjoyed it and still learned something new. Spent approximately 4 hours.
 
-1.  Choose subject (one of the two).
-2.  Depending on the selection in the first step, display a list of
-    reading material. Choose one.
-3.  When reading material chosen, display all the info that's available
-    about the book in a form (meaning that the book info can be edited).
+## What's inside?
+* React
+* Webpack
+* Babel
+* ESLint (Airbnb)
+* Sass (SCSS)
 
-## Requirements
+## How to launch project?
+* Install required packages with `yarn install`
+* Start the project with `yarn start`
+* ... and visit `http://localhost:8080/`
 
-*   All steps should be visible on the screen and changable at all times
-    (when they are available -- step 1 when nothing is picked, step 1
-    and 2 when step 1 is picked and step 1, 2 and 3 when step 2 is
-    picked).
-
-*   You can use whatever libraries, task runners and build processes you
-    like. React and plain JavaScript are the only requirements (ES6
-    encouraged, but no TypeScript, CoffeeScript, etc). Redux is strongly
-    encouraged if you see a need for it.
-
-### Suggested order of completion
-
-This depends on how much time you were given to accomplish the task.
-Ideally you would provide a solution for each of the outlined steps
-unless they are marked as optional.
-
-1.  Data fetching from the api.
-2.  Form steps logic.
-3.  (optional) Saving the data.
-4.  (optional) Styling (minor for a 2-3 h challenge, more if there's more time).
-
-## API Usage
-
-API can be launched using `npm start`. You will need to run `npm
-install` once starting working on the project to install dependencies.
-
-| Endpoint                     | Result                                              |
-|------------------------------|-----------------------------------------------------|
-| /books?subjects_like=Fiction | Lists all books that contain "Fiction" as a subject |
-| /subjects                    | Lists all available subjects                        |
-
----
-
-More info about API usage can be found at the [json-server
-repo](https://github.com/typicode/json-server).
+## How to build?
+* Simple production version can be built with `yarn build` to the `./build` directory.
 

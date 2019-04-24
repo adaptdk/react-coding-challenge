@@ -1,0 +1,43 @@
+@import '../../styles/common/color';
+@import '../../styles/common/size';
+@import '../../styles/common/typography';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background-color: $grey-color;
+  font-family: $font-family;
+}
+
+.container {
+  margin: 30px auto;
+  width: $container-width;
+}
+
+.section {
+  padding: 30px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .05);
+  background-color: $white-color;
+
+  &__heading {
+    font-size: $font-size-big;
+    font-weight: $font-weight-bold;
+    margin-bottom: 15px;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,23 @@
+@import '../../styles/common/color';
+@import '../../styles/common/typography';
+
+.list-item {
+  font-size: $font-size-regular;
+  display: block;
+  margin-bottom: 15px;
+  line-height: 1.4;
+  cursor: pointer;
+  color: $grey-text-color;
+  background: none;
+  text-align: left;
+  border: 0;
+  outline: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,32 @@
+@import '../../styles/common/color';
+@import '../../styles/common/size';
+@import '../../styles/common/typography';
+
+.select {
+  position: relative;
+
+  &__field {
+    width: 100%;
+    appearance: none;
+    padding: 8px 15px;
+    color: $grey-text-color;
+    background-color: transparent;
+    font-size: $font-size-regular;
+    font-family: $font-family;
+    border: 2px solid $grey-border-color;
+    border-radius: 4px;
+    outline: 0;
+    z-index: 1;
+    transition: background-color .3s ease;
+  }
+
+  &:after {
+    content: "▼"; // Simple
+    font-size: $font-size-small;
+    color: $grey-border-color;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    text-align: center;
+  }
+}

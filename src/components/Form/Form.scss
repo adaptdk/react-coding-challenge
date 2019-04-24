@@ -1,0 +1,21 @@
+@import '../../styles/common/color';
+@import '../../styles/common/typography';
+@import '../../styles/common/size';
+
+.form {
+  &__heading {
+    color: $black-color;
+    font-size: $font-size-regular;
+    margin: 10px 0;
+  }
+
+  &__label {
+    color: $grey-text-color;
+    font-weight: $font-weight-bold;
+  }
+
+  // Having a grid would be a better solution
+  &__group {
+    display: flex;
+  }
+}

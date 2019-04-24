@@ -1,0 +1,21 @@
+@import '../../styles/common/color';
+@import '../../styles/common/typography';
+
+.button {
+  width: 100%;
+  color: $white-color;
+  font-size: $font-size-regular;
+  font-weight: bold;
+  border: 0;
+  border-radius: 4px;
+  outline: 0;
+  padding: 9px 15px;
+  cursor: pointer;
+  background-color: $blue-color;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: darken($blue-color, 5%);
+    transition: background-color .3s ease;
+  }
+}
