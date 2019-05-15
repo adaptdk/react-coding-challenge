@@ -1,7 +1,7 @@
 # Adapt React Coding Challenge
 
 Seems like you're trying out for a position at
-[Adapt](https://adapt.dk/en) or you've found this and would like to
+[Uptain](https://uptain.de) or you've found this and would like to
 apply.  Fork this repo and go at it ;)
 
 Your goal is to set up a React application, where users will be able to
@@ -59,3 +59,7 @@ install` once starting working on the project to install dependencies.
 More info about API usage can be found at the [json-server
 repo](https://github.com/typicode/json-server).
 
+## Credits
+
+This repo was originally forked from the [Adapt](https://adapt.dk/en) repo here - https://github.com/adaptdk/react-coding-challenge 
+All credits are going out to them! Thanks guys!
