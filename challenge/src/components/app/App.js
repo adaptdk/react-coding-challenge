@@ -1,26 +1,64 @@
-import React from 'react';
-import logo from 'assets/images/logo.svg';
+import React, { Component } from 'react';
 import 'components/app/App.css';
+import BookList from 'components/books/BookList';
+import BookDetails from 'components/books/BookDetails';
+import CategorySelector from '../books/CategorySelector';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedCategory: undefined,
+      selectedItem: undefined
+    }
+  }
+
+  setCategory(category) {
+    this.setState({ selectedCategory: category });
+  }
+
+  setSelectedItem(item) {
+    if (this.state.selectedItem !== undefined) {
+      if (item.id === this.state.selectedItem.id) {
+        item = undefined
+      }
+    }
+    this.setState({ selectedItem: item })
+  }
+
+  renderBookList() {
+    const { selectedCategory } = this.state
+    if (!selectedCategory) {
+      return null;
+    }
+    return <BookList setSelectedItem={this.setSelectedItem.bind(this)} selectedCategory={selectedCategory} />;
+  }
+
+  renderBookDetails() {
+    const { selectedItem } = this.state
+    if (!selectedItem) {
+      return null;
+    }
+    return <BookDetails book={selectedItem} />
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <div className="jumbotron">
+          <h1>My Reading List</h1>
+        </div>
+        <div className="row">
+          <div className="col-sm-12">
+            <CategorySelector setCategory={this.setCategory.bind(this)} />
+          </div>
+        </div>
+        {this.renderBookList()}
+        <hr />
+        {this.renderBookDetails()}
+      </div>
+    );
+  }
 }
 
 export default App;
