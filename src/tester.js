@@ -1,6 +1,6 @@
-{
-    "subjects": ["Fiction", "Science"],
-    "books": [
+let books =
+   
+     [
       {  
            "id":1342,
            "authors":[  
@@ -117,4 +117,51 @@
            "title":"The Adventures of Tom Sawyer"
         }
     ]
-  }
+    let scienceTitels=[]
+
+    for(let i=0;i<books.length;i++){
+        if(books[i].subjects.find(function(name){
+         return   name ==="Science";
+        })
+          ){
+            scienceTitels.push(books[i].title);
+        }
+    }
+
+
+
+
+
+
+
+
+let scienceTitels=[]
+
+for(let i=0;i<books.length;i++){
+    if(books[i].subjects.find(function(name){
+     return   name ==="Science";
+    })
+      ){
+        scienceTitels.push(books[i].title);
+        // console.log(`Science ${books[i].title}`);
+    }
+}
+
+console.log(scienceTitels);
+
+
+
+
+// for(let i=0;i<books.length;i++){
+//     if(books[i].subjects.find(function(name){
+//      return   name ==="Fiction";
+//     })
+//       ){
+//         console.log(`Fiction ${books[i].title}`);
+//     }
+// }
+
+
+
+//   console.log(books[3].subjects);
+  

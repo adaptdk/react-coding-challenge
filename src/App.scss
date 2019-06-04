@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
+
+body{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+
+}
+.mainDiv{
+    margin-top: 2em;
+    width:100%;
+
+}
+.buttonDiv{
+    width: 14em;
+    box-sizing: content-box;
+    margin: 0 auto;
+    text-align: center;
+   
+}
+.subjectsButtons{
+    border-radius: 0.5em;
+    font-family: 'Roboto';
+    width:7em;
+    &:focus {outline:none}
+    &:hover{
+        background: rgba(195, 226, 236,0.7);
+    }
+}
+.titelsDiv{
+margin: 1.25em auto;
+width: 80%;
+display: flex;
+flex-direction: column;
+}
+
+.titelsButtons{
+    border-radius: 0.5em;
+    font-family: 'Roboto', sans-serif;
+    width: 50%;
+    height: 5em;
+    margin:0.2em auto;
+    overflow: hidden;
+    &:focus {outline:none}
+    &:hover{
+        background: rgba(198, 241, 198,0.6);
+    }
+}
+
+
+.currentBookInfoDiv{
+   
+    width: 50%;
+    margin: 0 auto;
+ .currentBookInfoInnerDiv{
+margin-top: 2em;
+border: 1px solid grey;
+background: lightgray;
+ } 
+}
+.bookInfOutBox{
+    margin-top: 1em;
+display: flex;
+flex-direction: row;
+.bookInfInBox{
+    font-weight: bold;
+}
+.actualInfo{
+    margin-left: 0.5em;
+}
+}
+img{
+    width: 10em;
+    height:10em;
+}
+.bookImgDiv{
+width: 100%;
+text-align: center;
+}
+.bookImg{
+    margin:2em auto;
+    width: 10em;
+  
+}
