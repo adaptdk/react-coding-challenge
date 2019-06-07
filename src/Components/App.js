@@ -6,8 +6,21 @@ import endpoint from "../util/endpoint";
 import "../sass/App.scss";
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      books: [],
+    };
+  }
+
   getBooks = subject => {
-    console.log(`trying to get books for ${subject}`);
+    let books = endpoint.getBooks(subject);
+    books.then(books => {
+      this.setState({
+        books: books,
+      });
+    });
   };
   render() {
     return (
