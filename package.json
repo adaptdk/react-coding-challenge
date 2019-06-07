@@ -3,12 +3,30 @@
   "version": "1.0.0",
   "description": "A package containing a simple dummy book API, which should be used in the challenge",
   "scripts": {
-    "start": "json-server --port 3010 --watch api.json"
+    "json": "json-server --port 3010 --watch api.json",
+    "dev": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html/",
+    "start": "concurrently 'npm run json' 'npm run dev'"
   },
-  "keywords": ["react challenge", "tryouts", "react developer", "hiring"],
+  "keywords": [
+    "react challenge",
+    "tryouts",
+    "react developer",
+    "hiring"
+  ],
   "author": "Adapt A/S",
   "license": "ISC",
   "devDependencies": {
-    "json-server": "0.10.1"
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "concurrently": "^4.1.0",
+    "json-server": "0.10.1",
+    "node-sass": "^4.12.0",
+    "parcel-bundler": "^1.12.3"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
