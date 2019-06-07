@@ -17,6 +17,20 @@ const endpoint = {
         return jsonResponse;
       });
   },
+  getBooks(subject) {
+    const callback = `${jsonServer}${books}?subjects_like=${subject}`;
+    return fetch(callback, {
+      headers: {
+        Accept: "application/vnd.api+json",
+      },
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(jsonResponse => {
+        return jsonResponse;
+      });
+  },
 };
 
 export default endpoint;
