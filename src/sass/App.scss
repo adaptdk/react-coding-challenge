@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  box-sizing: border-box;
+  width: 100vw;
+  padding: 20px;
+  background: #3a3a3a;
+  color: #3c4858;
+}
+
+.appFrame {
+  display: flex;
+  background: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
+  // padding: 20px;
+}
+
+.columnTitle {
+  text-transform: uppercase;
+  font-size: 24px;
+  border-bottom: 1px solid #515151;
+  margin-bottom: 30px;
+}
+
+.Subjects,
+.Books {
+  width: 25%;
+  padding: 20px;
+}
+
+.Subjects {
+  background: #e2e9ed;
+  .subjectsList {
+    .subjectItem {
+      border-radius: 5px;
+      padding: 5px;
+      margin-bottom: 20px;
+      &:hover,
+      &.active {
+        background: #8e8e8e;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.Books {
+}
+
+.BookDetails {
+  width: 50%;
+  padding: 20px;
+}
