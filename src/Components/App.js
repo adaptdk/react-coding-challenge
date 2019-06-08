@@ -26,7 +26,7 @@ export default class App extends Component {
     return (
       <div className="appFrame">
         <Subjects searchBooks={this.getBooks} />
-        <Books />
+        <Books books={this.state.books} />
         <BookDetails />
       </div>
     );
