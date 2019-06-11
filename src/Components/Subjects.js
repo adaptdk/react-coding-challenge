@@ -30,7 +30,13 @@ export default class Subjects extends Component {
         <div className="subjectsList">
           {this.state.subjects.map((sbj, index) => {
             return (
+              <div
+                className="subjectItem listItem"
                 key={index}
+                onClick={() => this.selectSubject(sbj)}
+              >
+                {sbj}
+              </div>
             );
           })}
         </div>
