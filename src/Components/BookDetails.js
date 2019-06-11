@@ -13,10 +13,6 @@ export default class BookDetails extends Component {
     this.props.saveBook(evt);
   };
 
-  handleCheckboxChange = evt => {
-    this.props.saveBook(evt);
-  };
-
   bookShelves = () => {
     const availableBookShelves = this.props.bookShelves;
     let selectedBookshelves = Object.entries(
@@ -40,7 +36,7 @@ export default class BookDetails extends Component {
               checked={checked}
               name={bookshelve[1]}
               value={this.state.checkbox}
-              onChange={this.handleCheckboxChange}
+              onChange={this.handleChange}
             />
           </div>
         );

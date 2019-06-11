@@ -48,13 +48,23 @@ export default class App extends Component {
   };
 
   updateActiveBook = evt => {
-    this.setState({
-      activeBook: update(this.state.activeBook, {
-        [evt.target.name]: {
-          $set: evt.target.value,
-        },
-      }),
-    });
+    if (evt.target.type === "checkbox") {
+      this.setState({
+        activeBook: update(this.state.activeBook, {
+          bookshelves: {
+            $push: [evt.target.name],
+          },
+        }),
+      });
+    } else {
+      this.setState({
+        activeBook: update(this.state.activeBook, {
+          [evt.target.name]: {
+            $set: evt.target.value,
+          },
+        }),
+      });
+    }
   };
 
   render() {
