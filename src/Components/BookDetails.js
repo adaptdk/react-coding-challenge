@@ -1,11 +1,21 @@
 import React, { Component } from "react";
-import update from "immutability-helper";
 
 export default class BookDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      checkbox: true,
+      editedBook: {},
+    };
   }
+
+  handleChange = evt => {
+    this.props.saveBook(evt);
+  };
+
+  handleCheckboxChange = evt => {
+    this.props.saveBook(evt);
+  };
 
   bookShelves = () => {
     const availableBookShelves = this.props.bookShelves;
@@ -20,14 +30,11 @@ export default class BookDetails extends Component {
         let checked = false;
         if (selectedBookshelves.includes(bookshelve[1])) {
           checked = true;
-        } else {
-          checked = false;
         }
         return (
           <div className="inputItem" key={key}>
             <label htmlFor={bookshelve[1]}>{bookshelve[1]}</label>
             <input
-              readOnly
               type="checkbox"
               key={key}
               checked={checked}
@@ -58,10 +65,13 @@ export default class BookDetails extends Component {
             <div className="formRow">
               <label htmlFor="">Title</label>
               <input
-                readOnly
                 type="text"
                 name="title"
-                value={this.props.activeBook.title || ""}
+                value={
+                  this.state.editedBook.title ||
+                  this.props.activeBook.title ||
+                  ""
+                }
                 onChange={this.handleChange}
               />
             </div>
@@ -69,10 +79,11 @@ export default class BookDetails extends Component {
             <div className="formRow">
               <label htmlFor="">ID</label>
               <input
-                readOnly
                 type="text"
                 name="id"
-                value={this.props.activeBook.id || ""}
+                value={
+                  this.state.editedBook.id || this.props.activeBook.id || ""
+                }
                 onChange={this.handleChange}
               />
             </div>
@@ -80,7 +91,6 @@ export default class BookDetails extends Component {
             <div className="formRow">
               <label htmlFor="">Downloads</label>
               <input
-                readOnly
                 type="text"
                 name="download_count"
                 value={this.props.activeBook.download_count || ""}
@@ -96,7 +106,6 @@ export default class BookDetails extends Component {
             <div className="formRow">
               <label htmlFor="">Media Type</label>
               <input
-                readOnly
                 type="text"
                 name="media_type"
                 value={this.props.activeBook.media_type || ""}
@@ -107,7 +116,6 @@ export default class BookDetails extends Component {
             <div className="formRow">
               <label htmlFor="">Langagues</label>
               <input
-                readOnly
                 type="text"
                 name="languages"
                 value={this.props.activeBook.languages || ""}
@@ -122,8 +130,16 @@ export default class BookDetails extends Component {
                   (format, key) => {
                     return (
                       <div className="formatRow" key={key}>
-                        <input type="text" value={format[0]} readOnly />
-                        <input type="text" value={format[1]} readOnly />
+                        <input
+                          type="text"
+                          value={format[0]}
+                          onChange={this.handleChange}
+                        />
+                        <input
+                          type="text"
+                          value={format[1]}
+                          onChange={this.handleChange}
+                        />
                       </div>
                     );
                   },
@@ -141,28 +157,28 @@ export default class BookDetails extends Component {
                         <div className="formRow">
                           <label htmlFor="">Name: </label>
                           <input
-                            readOnly
                             type="text"
                             className="name"
                             value={author[1].name}
+                            onChange={this.handleChange}
                           />
                         </div>
                         <div className="formRow">
                           <label htmlFor="">Birth Year: </label>
                           <input
-                            readOnly
                             type="text"
                             className="name"
                             value={author[1].birth_year}
+                            onChange={this.handleChange}
                           />
                         </div>
                         <div className="formRow">
                           <label htmlFor="">Death Year: </label>
                           <input
-                            readOnly
                             type="text"
                             className="name"
                             value={author[1].death_year}
+                            onChange={this.handleChange}
                           />
                         </div>
                       </div>

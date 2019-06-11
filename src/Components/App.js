@@ -3,6 +3,7 @@ import Subjects from "./Subjects";
 import Books from "./Books";
 import BookDetails from "./BookDetails";
 import endpoint from "../util/endpoint";
+import update from "immutability-helper";
 import "../sass/App.scss";
 
 export default class App extends Component {
@@ -43,6 +44,16 @@ export default class App extends Component {
       this.setState({
         bookShelves: bookShelve.flat(),
       });
+    });
+  };
+
+  updateActiveBook = evt => {
+    this.setState({
+      activeBook: update(this.state.activeBook, {
+        [evt.target.name]: {
+          $set: evt.target.value,
+        },
+      }),
     });
   };
 
