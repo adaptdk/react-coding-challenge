@@ -83,7 +83,6 @@ export default class BookDetails extends Component {
                 readOnly
                 type="text"
                 name="download_count"
-                disabled
                 value={this.props.activeBook.download_count || ""}
                 onChange={this.handleChange}
               />
@@ -100,7 +99,6 @@ export default class BookDetails extends Component {
                 readOnly
                 type="text"
                 name="media_type"
-                disabled
                 value={this.props.activeBook.media_type || ""}
                 onChange={this.handleChange}
               />
@@ -112,7 +110,6 @@ export default class BookDetails extends Component {
                 readOnly
                 type="text"
                 name="languages"
-                disabled
                 value={this.props.activeBook.languages || ""}
                 onChange={this.handleChange}
               />
