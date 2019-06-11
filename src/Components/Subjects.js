@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import SubjectItem from "./SubjectItem";
 import endpoint from "../util/endpoint";
 
 export default class Subjects extends Component {
@@ -31,11 +30,7 @@ export default class Subjects extends Component {
         <div className="subjectsList">
           {this.state.subjects.map((sbj, index) => {
             return (
-              <SubjectItem
                 key={index}
-                subject={sbj}
-                setActive={() => this.selectSubject(sbj)}
-              />
             );
           })}
         </div>
