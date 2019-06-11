@@ -89,19 +89,6 @@ body {
         cursor: not-allowed;
       }
     }
-    .linkContainer {
-      width: 80%;
-      display: flex;
-      justify-content: space-between;
-      flex-flow: row wrap;
-      a {
-        width: 50%;
-        display: block;
-        color: inherit;
-        text-decoration: underline;
-        margin-bottom: 5px;
-      }
-    }
     .inputList {
       display: flex;
       justify-content: space-between;
@@ -128,4 +115,22 @@ body {
     border-bottom: none;
     margin-bottom: 0px;
   }
+}
+
+.formContainer {
+  display: flex;
+  flex-flow: row wrap;
+  width: 80%;
+  .formatRow {
+    width: 100%;
+    margin-bottom: 30px;
+    input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+input {
+  box-sizing: border-box;
 }

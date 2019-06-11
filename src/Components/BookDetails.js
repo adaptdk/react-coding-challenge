@@ -117,13 +117,14 @@ export default class BookDetails extends Component {
 
             <div className="formRow">
               <label htmlFor="">Formats</label>
-              <div className="linkContainer">
+              <div className="formContainer">
                 {Object.entries(this.props.activeBook.formats).map(
                   (format, key) => {
                     return (
-                      <a target="_blank" href={format[1]} key={key}>
-                        {format[0]}
-                      </a>
+                      <div className="formatRow" key={key}>
+                        <input type="text" value={format[0]} readOnly />
+                        <input type="text" value={format[1]} readOnly />
+                      </div>
                     );
                   },
                 )}
