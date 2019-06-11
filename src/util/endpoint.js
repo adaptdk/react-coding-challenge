@@ -31,6 +31,23 @@ const endpoint = {
         return jsonResponse;
       });
   },
+  getBookShelves() {
+    const callback = `${jsonServer}${books}`;
+    return fetch(callback, {
+      headers: {
+        Accept: "application/vnd.api+json",
+      },
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(books => {
+        const bookshelves = Object.entries(books).map(book => {
+          return book[1].bookshelves;
+        });
+        return bookshelves;
+      });
+  },
 };
 
 export default endpoint;
