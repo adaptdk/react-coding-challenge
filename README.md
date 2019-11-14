@@ -1,3 +1,3 @@
-# react-coding-challenge
+# Solution 
 
-<img src="https://github.com/pijus-r/react-coding-challenge/blob/master/ScreenshotSolution.png" width="100%" height="auto"/>
+<img src="https://github.com/pijus-r/react-coding-challenge/blob/master/ScreenshotSolution.png" width="50%" height="auto"/>
