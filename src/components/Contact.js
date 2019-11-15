@@ -21,12 +21,12 @@ function Contact() {
       </p>
       <p>
         <ButtonToolbar>
-          <Button href="https://github.com/pijus-r" variant="outline-primary">
+          <Button href="https://www.behance.net/pijusrancevas" variant="outline-primary">
             Front-end
           </Button>
 
           <Button
-            href="https://www.behance.net/pijusrancevas"
+            href="https://github.com/pijus-r"
             variant="outline-dark"
           >
             Github
