@@ -1,14 +1,33 @@
 {
-  "name": "react-coding-challenge",
-  "version": "1.0.0",
-  "description": "A package containing a simple dummy book API, which should be used in the challenge",
-  "scripts": {
-    "start": "json-server --port 3010 --watch api.json"
+  "name": "AdaptDev",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "react": "^16.11.0",
+    "react-bootstrap": "^1.0.0-beta.14",
+    "react-dom": "^16.11.0",
+    "react-scripts": "^3.2.0"
   },
-  "keywords": ["react challenge", "tryouts", "react developer", "hiring"],
-  "author": "Adapt A/S",
-  "license": "ISC",
-  "devDependencies": {
-    "json-server": "0.10.1"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
