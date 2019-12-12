@@ -1,0 +1,162 @@
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+*, *:after, *:before {
+    box-sizing: inherit;
+    /*border: 1px red solid;*/
+}
+h1 {
+    padding: 1em 0;
+    margin:0;
+    letter-spacing: 0.12rem;
+}
+h3 {
+    margin-top:2.5em;
+}
+.container {
+    display: block;
+    max-width: 650px;
+    margin:auto;
+    background-color: rgb(235, 235, 235);
+    text-align: center;
+    padding-bottom: 2.5em;
+}
+
+.select-subject {
+    height: 3em;
+    width: 15em;
+    font-family:inherit;
+    font-weight: 700;
+    font-size: 1rem;
+    
+}
+.select-subject,
+.option-subject {
+    background-color: rgb(247, 245, 245);
+}
+.select-subject:focus,
+.option-subject:focus
+.option-subject:active {
+    background-color: aquamarine;
+}
+.sele
+
+.books-items {
+    text-align: left;
+}
+.btn-book {
+    text-decoration: none;
+    color: black;
+    display: block;
+    width: 100%;
+    padding: 1em;
+}
+.btn-book:hover,
+.btn-book:focus,
+.btn-book:active
+{
+    background-color: aquamarine;
+}
+label {
+    display: block;
+    text-align: left;
+    padding-left: 0.7em;
+    margin-top: 2em;
+    font-weight: 300;
+}
+
+input {
+    width: 96%;
+    height: 2rem;
+    font-family: inherit;
+    background-color: transparent;
+    border:none;
+    border-bottom: 0.15em solid rgb(83, 83, 83);
+    font-size: 1.2rem;
+}
+input:active, input:focus {
+    background-color: aquamarine;
+}
+.input {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+ul {
+    padding: 0;
+    margin:0;
+}
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.author {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.author-name {
+    width: 60%;
+}
+.author-birthyear,
+.author-deathyear {
+    width: 18%;
+}
+.author-deathyear {
+    margin-right: .6em;
+}
+.item-format {
+    display: inline-block;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    padding: 0 1.2%;
+}
+.format-element {
+    width: 50%;
+}
+.item-format {
+    margin-bottom: 1em;
+}
+.btn-add {
+    content:'';
+    background-image: url("img/add-circle-line.svg");
+    background-size: 2em 2em;
+    width: 2em;
+    height: 2em;
+    display: inline-block;
+    color: transparent;
+    margin-top: 0.1rem;
+    user-select: none;
+}
+.btn-add:hover,
+.btn-add:active,
+.btn-add:focus {
+    background-image: url("img/add-circle-fill.svg");
+}
+.lbl-format {
+    padding-left: .4em;
+    margin-top:0;
+    
+}
+.btn-location {
+    color: rgb(172, 238, 238);
+    background-color: rgb(167, 164, 164);
+    font-size: .7rem;
+    border-radius: .3em;
+    padding:.3em 1em;
+    text-decoration: none;
+    margin-right: .56em;
+}
+.lbl-left {
+    text-align: right;
+}
