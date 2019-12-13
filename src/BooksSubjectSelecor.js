@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 import Books from "./Books"
 
-function SubjectSelecor(props) {
+function BooksSubjectSelector(props) {
     const [selectedSubject, setSelectedSubject] = useState()
     const [isFirstTime, setFirstTime] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
@@ -63,4 +63,4 @@ function SubjectSelecor(props) {
     )
 }
 
-export default SubjectSelecor
+export default BooksSubjectSelector

@@ -1,11 +1,11 @@
 import React from "react"
-import SubjectSelecor from "./SubjectSelecor"
+import BooksSubjectSelecor from "./BooksSubjectSelecor"
 
 function App(props) {
     return (
         <div className="container">
             <h1>Awesome book info collection</h1>
-            <SubjectSelecor />
+            <BooksSubjectSelecor />
         </div>)
 }
 export default App
