@@ -32,7 +32,6 @@ function Books(props) {
         e.preventDefault()
         const id = parseInt(e.target.id)
         setSelectedBook(books.find(b => b.id === id))
-        console.log(e.target.id)
     }
 
     const firstSelection = useRef(null)

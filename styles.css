@@ -1,25 +1,31 @@
+:root {
+    --selection-color:  aquamarine;
+    --input-underline-color: rgb(83, 83, 83);
+}
 html {
     box-sizing: border-box;
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
 }
 
+*, *:after, *:before {
+    box-sizing: inherit;
+}
+
 body {
     margin: 0;
 }
 
-*, *:after, *:before {
-    box-sizing: inherit;
-    /*border: 1px red solid;*/
-}
 h1 {
     padding: 1em 0;
     margin:0;
     letter-spacing: 0.12rem;
 }
+
 h3 {
     margin-top:2.5em;
 }
+
 .container {
     display: block;
     max-width: 650px;
@@ -37,6 +43,7 @@ h3 {
     font-size: 1rem;
     
 }
+
 .select-subject,
 .option-subject {
     background-color: rgb(247, 245, 245);
@@ -44,13 +51,13 @@ h3 {
 .select-subject:focus,
 .option-subject:focus
 .option-subject:active {
-    background-color: aquamarine;
+    background-color: var(--selection-color)
 }
-.sele
 
 .books-items {
     text-align: left;
 }
+
 .btn-book {
     text-decoration: none;
     color: black;
@@ -62,8 +69,9 @@ h3 {
 .btn-book:focus,
 .btn-book:active
 {
-    background-color: aquamarine;
+    background-color: var(--selection-color);
 }
+
 label {
     display: block;
     text-align: left;
@@ -78,12 +86,15 @@ input {
     font-family: inherit;
     background-color: transparent;
     border:none;
-    border-bottom: 0.15em solid rgb(83, 83, 83);
+    border-bottom: 0.15em solid var(--input-underline-color);
     font-size: 1.2rem;
 }
-input:active, input:focus {
-    background-color: aquamarine;
+
+input:active,
+input:focus {
+    background-color: var(--selection-color);
 }
+
 .input {
     margin-left: 2%;
     margin-right: 2%;
@@ -107,13 +118,16 @@ li {
 .author-name {
     width: 60%;
 }
+
 .author-birthyear,
 .author-deathyear {
     width: 18%;
 }
+
 .author-deathyear {
     margin-right: .6em;
 }
+
 .item-format {
     display: inline-block;
     width: 100%;
@@ -121,12 +135,15 @@ li {
     text-align: center;
     padding: 0 1.2%;
 }
+
 .format-element {
     width: 50%;
 }
+
 .item-format {
     margin-bottom: 1em;
 }
+
 .btn-add {
     content:'';
     background-image: url("img/add-circle-line.svg");
@@ -138,16 +155,19 @@ li {
     margin-top: 0.1rem;
     user-select: none;
 }
+
 .btn-add:hover,
 .btn-add:active,
 .btn-add:focus {
     background-image: url("img/add-circle-fill.svg");
 }
+
 .lbl-format {
     padding-left: .4em;
     margin-top:0;
     
 }
+
 .btn-location {
     color: rgb(172, 238, 238);
     background-color: rgb(167, 164, 164);
@@ -157,6 +177,7 @@ li {
     text-decoration: none;
     margin-right: .56em;
 }
+
 .lbl-left {
     text-align: right;
 }
