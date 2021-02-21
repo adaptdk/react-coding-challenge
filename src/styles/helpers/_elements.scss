@@ -1,0 +1,150 @@
+/* ====================================
+=============== ELEMENTS ==============
+======================================= */
+
+/* ========== Form elements ========== */
+.h-form {
+  @include increase-element-size(95%, $container-width-sizes, width);
+  margin: 0 auto;
+  @include v-flex(center, center);
+  @include increase-element-size(px-rem(15), $box-margin-sizes, margin-top);
+  @include increase-element-size(px-rem(15), $box-margin-sizes, margin-bottom);
+}
+.h-input {
+  border: none;
+  outline: 1px solid $input-outline-color;
+  &:focus {
+    outline: 1px solid $input-outline-color-focused;
+  }
+}
+
+.h-checkbox {
+  margin: px-rem(10);
+}
+.h-select {
+  border: none;
+  outline: 1px solid $input-outline-color;
+  &:focus {
+    outline: 1px solid $input-outline-color-focused;
+  }
+}
+.h-textarea {
+  border: none;
+  resize: none;
+  outline: 1px solid $input-outline-color;
+  &:focus {
+    outline: 1px solid $input-outline-color-focused;
+  }
+}
+
+/* ========= Text elements ======== */
+.h-link {
+  color: $link-color;
+  text-decoration: none;
+  cursor: pointer;
+  transition: $color-transition;
+  &:hover {
+    color: $link-color-hovered;
+  }
+  &:focus {
+    color: $link-color-focused;
+  }
+}
+/* ========= Buttons ======== */
+.h-button {
+  width: px-rem(100);
+  border: none;
+  color: $btn-txt-color;
+  background-color: $btn-bg-color;
+  transition: $bg-transition;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: $btn-bg-color-hovered;
+  }
+  @media (min-width: px-rem(480)) {
+    width: px-rem(120);
+  }
+  @media (min-width: px-rem(768)) {
+    width: px-rem(140);
+  }
+  @media (min-width: px-rem(1024)) {
+    width: px-rem(160);
+  }
+  @media (min-width: px-rem(1400)) {
+    width: px-rem(180);
+  }
+}
+.icon-btn--round {
+  width: px-rem(30);
+  height: px-rem(30);
+  border: none;
+  border-radius: px-rem(50);
+  padding: px-rem(5);
+  color: $btn-txt-color;
+  background-color: $btn-bg-color;
+  transition: $bg-transition;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: $btn-bg-color-hovered;
+  }
+}
+.icon-btn--transparent {
+  width: px-rem(30);
+  height: px-rem(30);
+  background-color: transparent;
+  border: none;
+  padding: px-rem(5);
+  transition: $bg-transition;
+  &:focus {
+    outline: none;
+  }
+}
+/* ========= Element holders ======== */
+.h-ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.h-input-group {
+  width: 100%;
+  height: auto;
+  @include v-flex(center, center);
+  @media (min-width: px-rem(768)) {
+    @include h-flex(space-between, center);
+  }
+}
+.h-checkbox-holder {
+  width: 100%;
+  @include h-flex(center, center);
+}
+.h-cards-holder {
+  @include increase-element-size(95%, $container-width-sizes, width);
+  margin: 0 auto;
+  @include v-flex(center, center);
+  @media (min-width: px-rem(768)) {
+    @include h-flex(space-between, flex-start);
+    flex-wrap: wrap;
+  }
+}
+.h-card {
+  width: 90%;
+  @include increase-element-size(
+    px-rem(10),
+    $box-elements-padding-sizes,
+    padding
+  );
+  @include v-flex(flex-start, flex-start);
+  margin: px-rem(25) 0;
+  box-shadow: px-rem(5) px-rem(5) px-rem(25) rgba($box-shadow-color, 0.5),
+    px-rem(5) px-rem(5) px-rem(25) rgba($box-shadow-color, 0.5) inset;
+  @media (min-width: px-rem(768)) {
+    width: 48%;
+    min-height: 50vh;
+    max-height: 50vh;
+    overflow: auto;
+  }
+}

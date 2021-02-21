@@ -1,0 +1,9 @@
+/* =====================================
+============= FUNCTIONS ===============
+====================================== */
+
+/* ===== Calculate pixels to rem ===== */
+@function px-rem($size) {
+  $remSize: $size / 16;
+  @return #{$remSize}rem;
+}

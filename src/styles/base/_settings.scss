@@ -1,0 +1,87 @@
+/* ============== IMPORTS ================= */
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@500&family=Rubik&family=Syne+Tactile&display=swap");
+@import "./functions";
+/* =======================================
+================= SETTINGS ==============
+=========================================== */
+
+/* =============== COLORS ===============
+========================================== */
+
+/* =========== Plain Colors ================= */
+$white: #ffffff;
+$black: #000;
+$light-red: #ff444e;
+$alice-blue: #f0f8ff;
+$dark-magenta: #8b008b;
+$snow: #fffafa;
+$light-cyan: #e0ffff;
+
+/* ============== Contextual Colors ================ */
+/*==============*********************===============*/
+/*==============*********************===============*/
+/* --- Background and Foreground --- */
+$primary-bg-color: $alice-blue;
+$primary-fg-color: $white;
+$secondary-fg-color: $black;
+$third-fg-color: $dark-magenta;
+$fourth-fg-color: $snow;
+/* ========== Text  ============ */
+$title-color: $light-red;
+$heading-txt-color: $black;
+$p-txt-color: $black;
+$input-txt-color: $black;
+$btn-txt-color: $white;
+/* ========== Links  ============ */
+$link-color: $white;
+$link-color-hovered: scale-color($white, $lightness: -20%);
+$link-color-focused: $dark-magenta;
+/* ========== Buttons  ============ */
+$btn-bg-color: $dark-magenta;
+$btn-bg-color-hovered: scale-color($dark-magenta, $lightness: 20%);
+/* ========== Borders  ============ */
+$border-color: $dark-magenta;
+/* ========== Shadows ============ */
+$box-shadow-color: $black;
+$input-shadow-color: $white;
+/* ========== Inputs  ============ */
+$input-outline-color: $black;
+$input-outline-color-focused: $dark-magenta;
+
+/* =============== Fonts ================
+=========================================*/
+/* === Plain Fonts === */
+$mukta: "Mukta", sans-serif;
+$rubik: "Rubik", sans-serif;
+$syne-tactile: "Syne Tactile", cursive;
+
+/* === Contextual Fonts === */
+$heading-font: $rubik;
+$txt-font: $mukta;
+$button-font: $syne-tactile;
+
+/*==========================================
+ =============== LISTS =====================
+========================================== */
+$breakpoints: px-rem(480), px-rem(768), px-rem(1024), px-rem(1400);
+// Font sizes
+$h1-font-sizes: px-rem(38), px-rem(42), px-rem(46), px-rem(50);
+$h2-font-sizes: px-rem(32), px-rem(36), px-rem(40), px-rem(44);
+$h3-font-sizes: px-rem(26), px-rem(30), px-rem(34), px-rem(38);
+$h4-font-sizes: px-rem(20), px-rem(24), px-rem(28), px-rem(32);
+$text-sizes: px-rem(17), px-rem(18), px-rem(19), px-rem(20);
+$text-elements-line-height: px-rem(19.55), px-rem(20.7), px-rem(21.85),
+  px-rem(23);
+$text-elements-padding-sizes: px-rem(6), px-rem(7), px-rem(8), px-rem(10);
+$text-elements-margin-sizes: px-rem(14), px-rem(16), px-rem(18), px-rem(20);
+// Box sizes
+$container-width-sizes: 90%, 85%, 80%, px-rem(1024);
+$box-elements-padding-sizes: px-rem(15), px-rem(20), px-rem(25), px-rem(30);
+$box-margin-sizes: px-rem(20), px-rem(25), px-rem(30), px-rem(35);
+
+/* ============================================
+============ Miscellaneous Styles ==========
+============================================= */
+$all-transition: all 0.3s ease-in-out;
+$color-transition: color 0.2s ease-in-out;
+$bg-transition: background-color 0.3s ease-in-out;
