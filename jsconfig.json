@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "src/*": ["./src/*"],
+      "comp/*": ["components/*"],
+      "hooks/*": ["hooks/*"],
+      "img/*": ["img/*"],
+      "router/*": ["router/*"],
+      "state/*": ["state/*"],
+      "consts/*": ["state/constants/*"],
+      "styles/*": ["styles/*"],
+      "tests/*": ["tests/*"]
+    }
+  },
+  "include": ["src", "setupTest.js"]
+}

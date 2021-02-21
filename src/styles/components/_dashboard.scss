@@ -1,0 +1,59 @@
+/* ========================================
+================= DASHBOARD ==============
+======================================= */
+.main-content {
+  width: 100%;
+  height: auto;
+  @include v-flex(center, center);
+}
+.page-heading {
+  text-align: center;
+}
+/* ============== Form ============== */
+.form {
+  @include increase-element-size(95%, $container-width-sizes, width);
+  margin: 0 auto;
+  @include v-flex(center, center);
+  @include increase-element-size(px-rem(15), $box-margin-sizes, margin-top);
+  @include increase-element-size(px-rem(15), $box-margin-sizes, margin-bottom);
+  border-bottom: 3px solid $border-color;
+}
+.form__input-holder {
+  @extend .h-input-group;
+}
+.form__input {
+  @extend .h-input;
+  width: 80%;
+}
+.form__select {
+  @extend .h-select;
+  width: 80%;
+}
+.form__option {
+  background-color: $primary-bg-color;
+}
+.form__textarea {
+  @extend .h-textarea;
+  width: 80%;
+}
+.form__checkbox {
+  @extend .h-checkbox;
+}
+.form__submit {
+  @extend .h-button;
+}
+
+/* ============================================
+================= MEDIA QUERIES =================
+============================================ */
+@media (min-width: px-rem(768)) {
+  .form__input {
+    width: 45%;
+  }
+  .form__select {
+    width: 45%;
+  }
+  .form__textarea {
+    width: 100%;
+  }
+}

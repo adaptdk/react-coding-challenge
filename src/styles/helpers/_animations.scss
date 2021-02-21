@@ -1,0 +1,21 @@
+/* =========================================
+============== ANIMATIONS ================
+======================================= */
+@keyframes element-pop-up {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes appear-onload {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

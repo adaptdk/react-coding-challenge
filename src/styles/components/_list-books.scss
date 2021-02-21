@@ -1,0 +1,49 @@
+/* ========================================
+================= LIST BOOKS ==============
+======================================= */
+.books {
+  @include v-flex(center, center);
+  @include increase-element-size(95%, $container-width-sizes, width);
+}
+.books__heading {
+  text-align: center;
+}
+.books__heading--error {
+  color: $light-red;
+}
+.books__heading--loading {
+  color: $dark-magenta;
+}
+.book__ul {
+  width: 100%;
+  overflow: hidden;
+  @extend .h-ul;
+}
+.books__li {
+  margin: px-rem(20) 0;
+  @include increase-element-size(
+    px-rem(15),
+    $text-elements-padding-sizes,
+    padding
+  );
+  cursor: pointer;
+  border-bottom: 1px solid $border-color;
+  &:hover {
+    .books__txt {
+      color: scale-color($dark-magenta, $lightness: 40%);
+    }
+  }
+}
+.books__txt {
+  @include increase-element-size(px-rem(18), $h4-font-sizes, font-size);
+  color: $dark-magenta;
+  line-height: 1.75;
+  display: block;
+  font-weight: 520;
+  text-align: center;
+  transition: $all-transition;
+  cursor: pointer;
+  &:hover {
+    color: scale-color($dark-magenta, $lightness: 40%);
+  }
+}

@@ -1,0 +1,23 @@
+/* ========================================
+================= CHOOSE BOOK ==============
+======================================= */
+.choose-book__heading {
+  margin: px-rem(20) px-rem(15);
+  text-align: center;
+}
+.choose-book__form {
+  @extend .h-form;
+}
+.choose-book__select {
+  width: 100%;
+  @extend .h-select;
+  @media (min-width: px-rem(768)) {
+    width: 80%;
+  }
+  @media (min-width: px-rem(1024)) {
+    width: 50%;
+  }
+}
+.choose-book__submit {
+  @extend .h-button;
+}

@@ -1,0 +1,90 @@
+/* ================ IMPORTS ================ */
+@import "./functions";
+/* ==========================================
+==================== MIXINS =================
+============================================ */
+@mixin increase-element-size($initial-size, $list-of-sizes, $style-rule) {
+  #{$style-rule}: $initial-size;
+  @each $breakpoint in $breakpoints {
+    @media (min-width: $breakpoint) {
+      $index: index($breakpoints, $breakpoint);
+      #{$style-rule}: nth($list-of-sizes, $index);
+    }
+  }
+}
+
+@mixin noHighlightAndSelect {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@mixin v-flex($position, $alignment) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $position;
+  align-items: $alignment;
+}
+
+@mixin h-flex($position, $alignment) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $position;
+  align-items: $alignment;
+}
+
+@mixin backgroundIMG($path, $size, $position) {
+  background-image: $path;
+  background-size: $size;
+  background-position: $position;
+  background-repeat: no-repeat;
+}
+
+@mixin overlay($fallback, $bg) {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $fallback;
+  background: $bg;
+}
+
+@mixin containerWidth_sm {
+  width: 90%;
+  margin: 0 auto;
+}
+
+@mixin containerWidth_md {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@mixin containerWidth_lg {
+  width: 70%;
+  margin: 0 auto;
+}
+
+@mixin containerWidth_xl {
+  width: px-rem(1200);
+  margin: 0 auto;
+}
+@mixin content-editable--true($width) {
+  width: $width;
+  display: inline-block;
+  background-color: rgba($dark-magenta, 0.4);
+  padding: px-rem(8);
+  margin: px-rem(15) px-rem(5);
+  border: 1px solid $light-red;
+  transition: $all-transition;
+
+  &:focus {
+    background-color: transparent;
+    border: 1px solid $light-red;
+    outline: none;
+  }
+}
+@mixin content-editable--false {
+  transition: $all-transition;
+  word-break: break-all;
+}

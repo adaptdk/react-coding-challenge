@@ -1,0 +1,117 @@
+/* ================ IMPORTS ================ */
+@import "./settings";
+@import "./functions";
+@import "./mixins";
+/* ============================================
+================= GLOBALS ====================
+============================================ */
+html {
+  font-size: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $primary-bg-color;
+}
+*,
+*:focus,
+*:hover {
+  outline: none;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+h1 {
+  @include increase-element-size(px-rem(36), $h1-font-sizes, font-size);
+}
+h2 {
+  @include increase-element-size(px-rem(30), $h2-font-sizes, font-size);
+}
+h3 {
+  @include increase-element-size(px-rem(24), $h3-font-sizes, font-size);
+}
+h4 {
+  @include increase-element-size(px-rem(18), $h4-font-sizes, font-size);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $heading-font;
+  font-weight: 700;
+}
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px $input-shadow-color inset;
+  -webkit-box-shadow: 0 0 0px 1000px $input-shadow-color inset;
+}
+textarea:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px $input-shadow-color inset;
+  -webkit-box-shadow: 0 0 0px 1000px $input-shadow-color inset;
+}
+input,
+select,
+option,
+datalist,
+textarea,
+button,
+p,
+span,
+label,
+a {
+  font-family: $txt-font;
+  @include increase-element-size(px-rem(16), $text-sizes, font-size);
+  @include increase-element-size(
+    px-rem(18.4),
+    $text-elements-line-height,
+    line-height
+  );
+}
+
+p,
+span,
+label,
+a {
+  @include increase-element-size(
+    px-rem(12),
+    $text-elements-margin-sizes,
+    margin-top
+  );
+  @include increase-element-size(
+    px-rem(12),
+    $text-elements-margin-sizes,
+    margin-bottom
+  );
+}
+input,
+select,
+option,
+button,
+datalist,
+textarea {
+  @include increase-element-size(
+    px-rem(12),
+    $text-elements-margin-sizes,
+    margin-top
+  );
+  @include increase-element-size(
+    px-rem(12),
+    $text-elements-margin-sizes,
+    margin-bottom
+  );
+  @include increase-element-size(
+    px-rem(5),
+    $text-elements-padding-sizes,
+    padding
+  );
+}
+[contenteditable="false"] {
+  @include content-editable--false;
+}
+
+[contenteditable="true"] {
+  @include content-editable--true(100%);
+}

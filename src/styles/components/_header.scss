@@ -1,0 +1,32 @@
+/* ============================================
+================= HEADER =================
+============================================ */
+.header {
+  background-color: $secondary-fg-color;
+  width: 100%;
+  height: auto;
+  @include v-flex(center, center);
+}
+.header__title-holder {
+  @include increase-element-size(95%, $container-width-sizes, width);
+}
+.header__title {
+  color: $title-color;
+  word-wrap: break-word;
+  text-align: center;
+}
+.header__nav {
+  padding: px-rem(15);
+}
+.header__ul {
+  @extend .h-ul;
+}
+.header__nav-link {
+  @extend .h-link;
+}
+.is-active {
+  color: $link-color-focused;
+}
+/* ============================================
+================= MEDIA QUERIES =================
+============================================ */
