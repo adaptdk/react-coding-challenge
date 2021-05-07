@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+}
+
+.App {
+  margin: auto;
+  padding: 20px;
+  width: clamp(500px, 50vw, 100%);
+}
+
+.card {
+  margin-bottom: 25px;
+}
+
+.badge {
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  margin: 0 5px;
+}

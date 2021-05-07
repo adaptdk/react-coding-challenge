@@ -2,7 +2,7 @@
 
 Seems like you're trying out for a position at
 [Adapt](https://adapt.dk/en) or you've found this and would like to
-apply.  Fork this repo and go at it ;)
+apply. Fork this repo and go at it ;)
 
 Your goal is to set up a React application, where users will be able to
 edit book info (and create new books, if you have enough time to
@@ -23,15 +23,15 @@ to date. The form should be split into three steps:
 
 ## Requirements
 
-*   All steps should be visible on the screen and changable at all times
-    (when they are available -- step 1 when nothing is picked, step 1
-    and 2 when step 1 is picked and step 1, 2 and 3 when step 2 is
-    picked).
+- All steps should be visible on the screen and changable at all times
+  (when they are available -- step 1 when nothing is picked, step 1
+  and 2 when step 1 is picked and step 1, 2 and 3 when step 2 is
+  picked).
 
-*   You can use whatever libraries, task runners and build processes you
-    like. React and plain JavaScript are the only requirements (ES6
-    encouraged, but no TypeScript, CoffeeScript, etc). Redux is strongly
-    encouraged if you see a need for it.
+- You can use whatever libraries, task runners and build processes you
+  like. React and plain JavaScript are the only requirements (ES6
+  encouraged, but no TypeScript, CoffeeScript, etc). Redux is strongly
+  encouraged if you see a need for it.
 
 ### Suggested order of completion
 
@@ -46,11 +46,10 @@ unless they are marked as optional.
 
 ## API Usage
 
-API can be launched using `npm start`. You will need to run `npm
-install` once starting working on the project to install dependencies.
+API can be launched using `npm start`. You will need to run `npm install` once starting working on the project to install dependencies.
 
 | Endpoint                     | Result                                              |
-|------------------------------|-----------------------------------------------------|
+| ---------------------------- | --------------------------------------------------- |
 | /books?subjects_like=Fiction | Lists all books that contain "Fiction" as a subject |
 | /subjects                    | Lists all available subjects                        |
 
@@ -58,4 +57,3 @@ install` once starting working on the project to install dependencies.
 
 More info about API usage can be found at the [json-server
 repo](https://github.com/typicode/json-server).
-
