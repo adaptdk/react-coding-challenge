@@ -1,0 +1,37 @@
+.book-form-enter-active,
+.book-form-leave-active {
+  transition: .4s;
+}
+.book-form-enter,
+.book-form-leave-to {
+  transform: translateX(40px);
+  opacity: 0;
+}
+
+.popup-enter-active,
+.popup-leave-active {
+  transition: .4s;
+}
+.popup-enter,
+.popup-leave-to {
+  transform: translateY(40px);
+  opacity: 0;
+}
+
+body {
+  font-size: 16px;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
